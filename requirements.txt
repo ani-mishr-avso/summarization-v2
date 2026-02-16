@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+jinja2
+langgraph
+langchain_groq
+python-dotenv
+PyYAML
+tenacity

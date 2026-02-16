@@ -1,0 +1,94 @@
+# Runtime configuration. Override path via APP_CONFIG env var.
+
+llm:
+  model_name: "openai/gpt-oss-120b"
+  temperature: 0.5
+  reasoning_effort: "medium"
+  service_tier: "auto"
+
+routing:
+  confidence_threshold: 0.70
+  min_word_count: 200
+  call_type_to_path:
+    "AE/Sales": "ae_path"
+    "CSM/Post-Sale": "csm_path"
+    "Internal": "internal_path"
+    "SDR/Outbound": "sdr_path"
+
+call_types:
+  - "AE/Sales"
+  - "CSM/Post-Sale"
+  - "Internal"
+  - "SDR/Outbound"
+  - "Unclassified"
+
+csm:
+  qbr_duration_minutes: 45
+  qbr_template: "qbr_variant"
+  general_template: "general_post_sale"
+
+methodology:
+  default_sales_methodology: "MEDDPICC"
+
+fallback:
+  prompt_category: "fallback"
+  prompt_name: "fallback_template"
+  expert_type_label: "Unclassified"
+
+meddpicc:
+  health_signal:
+    green_above: 0.75
+    yellow_above: 0.45
+  status_map:
+    0: "missing"
+    1: "vague"
+    2: "validated"
+    3: "aligned"
+    4: "confirmed"
+    5: "fully confirmed"
+  default_weights:
+    metrics: 0.125
+    economic_buyer: 0.125
+    decision_criteria: 0.125
+    decision_process: 0.125
+    paper_process: 0.125
+    identify_pain: 0.125
+    champion: 0.125
+    competition: 0.125
+  stage_weights:
+    discovery:
+      metrics: 0.15
+      economic_buyer: 0.10
+      decision_criteria: 0.10
+      decision_process: 0.05
+      paper_process: 0.00
+      identify_pain: 0.40
+      champion: 0.15
+      competition: 0.05
+    demo:
+      metrics: 0.15
+      economic_buyer: 0.10
+      decision_criteria: 0.25
+      decision_process: 0.10
+      paper_process: 0.05
+      identify_pain: 0.20
+      champion: 0.10
+      competition: 0.05
+    proposal:
+      metrics: 0.20
+      economic_buyer: 0.20
+      decision_criteria: 0.10
+      decision_process: 0.15
+      paper_process: 0.10
+      identify_pain: 0.10
+      champion: 0.10
+      competition: 0.05
+    negotiation:
+      metrics: 0.10
+      economic_buyer: 0.20
+      decision_criteria: 0.05
+      decision_process: 0.20
+      paper_process: 0.30
+      identify_pain: 0.05
+      champion: 0.05
+      competition: 0.05

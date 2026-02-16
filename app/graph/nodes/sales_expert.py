@@ -1,9 +1,10 @@
 import asyncio
 
-from app.config import get_config, get_llm
+from app.config import get_llm, get_methodology_config
 from app.graph.state import CallState
 from app.prompts.loader import load_prompt
 from app.utils.llm_response import ainvoke_and_decode_json
+from app.utils.stage import normalize_ae_stage
 
 
 async def ae_expert_agent(state: CallState):
@@ -15,9 +16,8 @@ async def ae_expert_agent(state: CallState):
     Returns:
         The updated state with the final summary, voss analysis, and methodology analysis.
     """
-    cfg = get_config()
-    default_methodology = cfg["methodology"]["default_sales_methodology"]
-    stage = state["ae_stage"].split("/")[0].lower()
+    default_methodology = get_methodology_config()["default_sales_methodology"]
+    stage = normalize_ae_stage(state["ae_stage"])
     meth_name = (
         state["org_config"].get("sales_methodology", default_methodology).lower()
     )

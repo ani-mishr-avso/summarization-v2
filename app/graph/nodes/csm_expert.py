@@ -1,7 +1,6 @@
-from app.config import get_config, get_llm
+from app.config import get_csm_config
+from app.graph.nodes.common import run_simple_expert
 from app.graph.state import CallState
-from app.prompts.loader import load_prompt
-from app.utils.llm_response import invoke_and_decode_json
 
 
 def csm_expert_agent(state: CallState):
@@ -13,7 +12,7 @@ def csm_expert_agent(state: CallState):
     Returns:
         The updated state with the final summary.
     """
-    cfg = get_config()["csm"]
+    cfg = get_csm_config()
     qbr_duration_minutes = cfg["qbr_duration_minutes"]
     qbr_template = cfg["qbr_template"]
     general_template = cfg["general_template"]
@@ -24,9 +23,5 @@ def csm_expert_agent(state: CallState):
     )
     template = qbr_template if is_qbr else general_template
 
-    prompt = load_prompt("summarization/csm", template, transcript=state["transcript"])
-    llm = get_llm()
-    state["final_summary"] = invoke_and_decode_json(lambda: llm.invoke(prompt))
-    state["voss_analysis"] = None
-    state["methodology_analysis"] = None
-    return state
+    return run_simple_expert(state, "summarization/csm", template)
+

@@ -1,4 +1,4 @@
-from app.config import get_config, get_llm
+from app.config import get_fallback_config, get_llm
 from app.graph.state import CallState
 from app.prompts.loader import load_prompt
 
@@ -8,7 +8,7 @@ def fallback_expert(state: CallState):
     Applies a type-neutral template (Template E) when classification is
     ambiguous or data is insufficient.
     """
-    cfg = get_config()["fallback"]
+    cfg = get_fallback_config()
     prompt_category = cfg["prompt_category"]
     prompt_name = cfg["prompt_name"]
     expert_type_label = cfg["expert_type_label"]

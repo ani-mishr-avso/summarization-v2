@@ -26,5 +26,5 @@ eggs/
 *.swo
 
 # Optional: uncomment to ignore local data
-# data/
+data/
 # samples/

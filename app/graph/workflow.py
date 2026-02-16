@@ -2,13 +2,16 @@ import logging
 
 from langgraph.graph import END, StateGraph
 
-from app.config import get_config
-from app.graph.nodes.classifiers import level_1_classifier, level_2_ae_classifier
-from app.graph.nodes.csm_expert import csm_expert_agent
-from app.graph.nodes.fallback import fallback_expert
-from app.graph.nodes.internal_expert import internal_expert_agent
-from app.graph.nodes.sales_expert import ae_expert_agent
-from app.graph.nodes.sdr import sdr_expert_agent
+from app.config import get_routing_config
+from app.graph.nodes import (
+    ae_expert_agent,
+    csm_expert_agent,
+    fallback_expert,
+    internal_expert_agent,
+    level_1_classifier,
+    level_2_ae_classifier,
+    sdr_expert_agent,
+)
 from app.graph.state import CallState
 
 logger = logging.getLogger(__name__)
@@ -19,7 +22,7 @@ def routing_logic(state: CallState):
     """
     Determines the expert path based on confidence and call type.
     """
-    cfg = get_config()["routing"]
+    cfg = get_routing_config()
     threshold = cfg["confidence_threshold"]
     min_words = cfg["min_word_count"]
     call_type_to_path = cfg["call_type_to_path"]

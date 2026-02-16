@@ -27,6 +27,31 @@ def get_config() -> dict:
     return _CONFIG
 
 
+def get_routing_config() -> dict:
+    """Routing section (confidence_threshold, min_word_count, call_type_to_path)."""
+    return get_config()["routing"]
+
+
+def get_csm_config() -> dict:
+    """CSM section (qbr_duration_minutes, qbr_template, general_template)."""
+    return get_config()["csm"]
+
+
+def get_fallback_config() -> dict:
+    """Fallback section (prompt_category, prompt_name, expert_type_label)."""
+    return get_config()["fallback"]
+
+
+def get_meddpicc_config() -> dict:
+    """MEDDPICC section (health_signal, status_map, stage_weights, default_weights)."""
+    return get_config()["meddpicc"]
+
+
+def get_methodology_config() -> dict:
+    """Methodology section (default_sales_methodology, etc.)."""
+    return get_config()["methodology"]
+
+
 def get_llm():
     """Build ChatGroq from config and GROQ_API_KEY env."""
     from dotenv import load_dotenv

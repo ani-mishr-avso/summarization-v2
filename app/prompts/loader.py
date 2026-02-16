@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound, select_autoescape
@@ -25,7 +24,7 @@ def load_prompt(category: str, filename: str, **kwargs) -> str:
     """
     if not filename.endswith(".md"):
         filename = f"{filename}.md"
-    relative_path = os.path.join(category, filename)
+    relative_path = f"{category}/{filename}"
 
     try:
         template = jinja_env.get_template(relative_path)

@@ -45,14 +45,14 @@ def _speaker_turns(parsed_transcript: list[TurnEntry]) -> dict[str, Speaker]:
     """
     speakers_turns = defaultdict(lambda: Speaker())
     for turn in parsed_transcript:
-        # turn_ = turn.copy()
         speaker_label = turn.speaker_label
         duration = turn.duration
-        speakers_turns[speaker_label].turns.append(turn)
-        speakers_turns[speaker_label].num_turns += 1
-        speakers_turns[speaker_label].total_duration += duration
-        if duration > speakers_turns[speaker_label].longest_turn_duration:
-            speakers_turns[speaker_label].longest_turn_duration = duration
+        s = speakers_turns[speaker_label]
+        s.turns.append(turn)
+        s.num_turns += 1
+        s.total_duration += duration
+        if duration > s.longest_turn_duration:
+            s.longest_turn_duration = duration
     return dict(speakers_turns)
 
 
@@ -121,21 +121,14 @@ def is_short_transcript(parsed_transcript: list[TurnEntry], min_duration: float 
     return end_time - start_time < min_duration
 
 
-def _format_timestamp(timestamp: float, unit: str = "seconds") -> str:
+def _format_timestamp(timestamp: float) -> str:
     """
-    Format a timestamp as a string in the format "HH:MM:SS".
-    
-    Args:
-        timestamp (float): The timestamp to format.
-        unit (str): The unit of the timestamp.
-
-    Returns:
-        str: The formatted timestamp.
+    Format a timestamp (in seconds) as a string in the format "HH:MM:SS".
     """
-    divisor = 60 if unit == "seconds" else 60000
-    hours, minutes = divmod(int(timestamp), divisor * 60)
-    minutes, seconds = divmod(int(minutes), divisor)
-    return f"{int(hours):02}:{int(minutes):02}:{int(seconds):02}"
+    total_seconds = int(timestamp)
+    hours, remainder = divmod(total_seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 
 def format_transcript(parsed_transcript: list[TurnEntry], label_map: dict) -> str:

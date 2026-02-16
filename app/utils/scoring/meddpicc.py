@@ -1,10 +1,10 @@
-from typing import Any, Dict
+from typing import Any
 
 from app.config import get_meddpicc_config
 from app.utils.stage import normalize_ae_stage
 
 
-def _dimensions_to_dict(dimensions: Any) -> Dict[str, Dict[str, Any]]:
+def _dimensions_to_dict(dimensions: Any) -> dict[str, dict[str, Any]]:
     """
     Normalize dimensions to a dict keyed by dimension name.
     Accepts: list of {dimension, score, ...} or dict keyed by dimension name.
@@ -21,7 +21,7 @@ def _dimensions_to_dict(dimensions: Any) -> Dict[str, Dict[str, Any]]:
     return {}
 
 
-def calculate_meddpicc_score(methodology_json: Dict[str, Any], stage: str) -> Dict[str, Any]:
+def calculate_meddpicc_score(methodology_json: dict[str, Any], stage: str) -> dict[str, Any]:
     """
     Calculates weighted deal health using separate score fields per dimension.
     Weights and health thresholds are read from config.yaml (meddpicc section).

@@ -36,10 +36,7 @@ def main() -> None:
         print(f"Error: file not found: {json_path}", file=sys.stderr)
         sys.exit(1)
 
-    if args.output_path is not None:
-        output_path = args.output_path.resolve()
-    else:
-        output_path = json_path.with_suffix(".html")
+    output_path = (args.output_path or json_path.with_suffix(".html")).resolve()
 
     viewer_path = Path(__file__).parent / "json_viewer.html"
     if not viewer_path.exists():

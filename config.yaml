@@ -1,7 +1,13 @@
 # Runtime configuration. Override path via APP_CONFIG env var.
 
-llm:
+strategic_llm:
   model_name: "openai/gpt-oss-120b"
+  temperature: 0.1
+  reasoning_effort: "high"
+  service_tier: "auto"
+
+technical_llm:
+  model_name: "openai/gpt-oss-20b"
   temperature: 0.5
   reasoning_effort: "medium"
   service_tier: "auto"
@@ -12,13 +18,13 @@ routing:
   call_type_to_path:
     "AE/Sales": "ae_path"
     "CSM/Post-Sale": "csm_path"
-    "Internal": "internal_path"
+    "Internal/Implementation": "internal_path"
     "SDR/Outbound": "sdr_path"
 
 call_types:
   - "AE/Sales"
   - "CSM/Post-Sale"
-  - "Internal"
+  - "Internal/Implementation"
   - "SDR/Outbound"
   - "Unclassified"
 

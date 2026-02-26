@@ -52,18 +52,24 @@ def get_methodology_config() -> dict:
     return get_config()["methodology"]
 
 
-def get_llm():
-    """Build ChatGroq from config and GROQ_API_KEY env."""
+def get_llm(llm_type: str):
+    """
+    Build ChatGroq from config and GROQ_API_KEY env.
+    Args:
+        llm_type: The type of LLM to use. Either "strategic_llm" or "technical_llm".
+    Returns:
+        A ChatGroq instance.
+    """
     from dotenv import load_dotenv
     from langchain_groq import ChatGroq
 
     load_dotenv()
-    cfg = get_config()["llm"]
+    cfg = get_config()[llm_type]
     api_key = os.getenv("GROQ_API_KEY")
     return ChatGroq(
         model_name=cfg["model_name"],
         temperature=cfg["temperature"],
         api_key=api_key,
         reasoning_effort=cfg["reasoning_effort"],
-        service_tier=cfg["service_tier"],
+        service_tier=cfg["service_tier"]
     )

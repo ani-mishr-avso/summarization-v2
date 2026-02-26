@@ -12,7 +12,7 @@ class CallState(TypedDict):
         "AE/Sales", "Internal", "CSM/Post-Sale", "SDR/Outbound", "Unclassified"
     ]
     ae_stage: Optional[str]
-    confidence_score: float
+    confidence_level: Literal["LOW", "MEDIUM", "HIGH", "VERY HIGH"]
 
     # Output Layers
     final_summary: Dict[str, Any]

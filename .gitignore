@@ -24,7 +24,9 @@ eggs/
 .vscode/
 *.swp
 *.swo
+*.DS_Store
 
 # Optional: uncomment to ignore local data
 data/
+*.csv
 # samples/

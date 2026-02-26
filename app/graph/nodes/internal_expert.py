@@ -1,5 +1,17 @@
+import logging
+
 from app.graph.nodes.common import run_simple_expert
 from app.graph.state import CallState
+from app.utils.logger import get_logger
+
+
+logger = get_logger(__name__)
+logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler()
+handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+)
+logger.addHandler(handler)
 
 
 def internal_expert_agent(state: CallState):
@@ -11,4 +23,6 @@ def internal_expert_agent(state: CallState):
     Returns:
         The updated state with the final summary.
     """
-    return run_simple_expert(state, "summarization", "internal")
+    logger.info("Internal expert agent called")
+    out = run_simple_expert(state, "summarization", "internal")
+    return out

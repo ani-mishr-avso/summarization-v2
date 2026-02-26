@@ -23,3 +23,8 @@ def configure_logging() -> None:
     root.setLevel(level)
     if not root.handlers:
         root.addHandler(handler)
+
+
+def get_logger(name: str) -> logging.Logger:
+    """Return a logger for the given name. Use after configure_logging() for consistent config."""
+    return logging.getLogger(name)

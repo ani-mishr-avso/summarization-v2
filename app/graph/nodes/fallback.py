@@ -1,6 +1,18 @@
+import logging
+
 from app.config import get_fallback_config, get_llm
 from app.graph.state import CallState
 from app.prompts.loader import load_prompt
+from app.utils.logger import get_logger
+
+
+logger = get_logger(__name__)
+logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler()
+handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+)
+logger.addHandler(handler)
 
 
 def fallback_expert(state: CallState):
@@ -8,13 +20,19 @@ def fallback_expert(state: CallState):
     Applies a type-neutral template (Template E) when classification is
     ambiguous or data is insufficient.
     """
+    logger.info("Fallback expert called")
     cfg = get_fallback_config()
     prompt_category = cfg["prompt_category"]
     prompt_name = cfg["prompt_name"]
     expert_type_label = cfg["expert_type_label"]
 
+    logger.info(
+        "Fallback expert: Loading prompt with category: %s, name: %s",
+        prompt_category,
+        prompt_name,
+    )
     prompt = load_prompt(prompt_category, prompt_name, transcript=state["transcript"])
-    llm = get_llm()
+    llm = get_llm("technical_llm")
     response = llm.invoke(prompt)
 
     return {
@@ -27,6 +45,6 @@ def fallback_expert(state: CallState):
         "expert_insights": {
             "type": expert_type_label,
             "show_prompt": True,
-            "confidence": state["confidence_score"],
+            "confidence": state["confidence_level"],
         },
     }

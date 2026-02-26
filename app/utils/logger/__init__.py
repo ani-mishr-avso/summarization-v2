@@ -1,3 +1,3 @@
-from app.utils.logger.config import configure_logging
+from app.utils.logger.config import configure_logging, get_logger
 
-__all__ = ["configure_logging"]
+__all__ = ["configure_logging", "get_logger"]

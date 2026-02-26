@@ -15,6 +15,12 @@ from app.graph.nodes import (
 from app.graph.state import CallState
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler()
+handler.setFormatter(
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+)
+logger.addHandler(handler)
 
 
 # --- Routing Logic ---
@@ -22,26 +28,41 @@ def routing_logic(state: CallState):
     """
     Determines the expert path based on confidence and call type.
     """
+    logger.info(
+        "Call Type: %s, Confidence Level: %s, Transcript Length: %s",
+        state["call_type"],
+        state["confidence_level"],
+        len(state["transcript"].split()),
+    )
     cfg = get_routing_config()
     threshold = cfg["confidence_threshold"]
     min_words = cfg["min_word_count"]
     call_type_to_path = cfg["call_type_to_path"]
 
+    logger.info(
+        "Routing logic: confidence_threshold=%s min_word_count=%s call_type_to_path=%s",
+        threshold,
+        min_words,
+        call_type_to_path,
+    )
+
     if (
-        state["confidence_score"] < threshold
+        state["confidence_level"] in {"LOW", "MEDIUM"}
         or len(state["transcript"].split()) < min_words
     ):
+        logger.info("Routing to fallback")
         path = "fallback"
     else:
+        logger.info("Routing to %s", call_type_to_path.get(state["call_type"], "fallback"))
         path = call_type_to_path.get(state["call_type"], "fallback")
 
     logger.info(
-        "routing_logic: call_type=%s confidence_score=%s path=%s",
+        "routing_logic: call_type=%s confidence_level=%s path=%s",
         state["call_type"],
-        state["confidence_score"],
+        state["confidence_level"],
         path,
     )
-    return path
+    return path    
 
 
 # --- Graph Construction ---

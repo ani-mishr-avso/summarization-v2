@@ -1,0 +1,40 @@
+{
+  "call_type": "AE/Sales",
+  "sub_type": "Discovery/Qualification",
+  "output": {
+    "meeting_context": {
+      "attendees": [],
+      "referral_source": "",
+      "initial_rapport": ""
+    },
+    "smart_summary": [],
+    "pain_discovery": {
+      "current_state": "",
+      "pain_points": [],
+      "business_impact": "",
+      "workarounds": ""
+    },
+    "qualification_signals": {
+      "budget": "",
+      "authority": "",
+      "need": "",
+      "timeline": ""
+    },
+    "competitive_landscape": {
+      "incumbents": [],
+      "alternatives_evaluated": [],
+      "satisfaction_level": ""
+    },
+    "next_steps": [
+      {
+        "owner": "",
+        "action": "",
+        "deadline": ""
+      }
+    ],
+    "closing_remarks": {
+      "sentiment": "",
+      "willingness_to_continue": ""
+    }
+  }
+}

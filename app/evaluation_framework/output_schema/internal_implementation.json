@@ -1,0 +1,42 @@
+{
+  "call_type": "Internal/Implementation",
+  "output": {
+    "meeting_context": {
+      "trigger": "",
+      "project_state": "",
+      "requested_by": ""
+    },
+    "smart_summary": [],
+    "key_decisions": [
+      {
+        "decision": "",
+        "owner": "",
+        "rationale": ""
+      }
+    ],
+    "blockers_risks": [
+      {
+        "issue": "",
+        "impact": "",
+        "escalation_needed": false
+      }
+    ],
+    "technical_discussion": {
+      "topics_covered": [],
+      "logic_configurations": "",
+      "debugging_notes": ""
+    },
+    "action_items": [
+      {
+        "person": "",
+        "action": "",
+        "timeline": ""
+      }
+    ],
+    "timeline_dependencies": {
+      "deadlines": [],
+      "external_dependencies": [],
+      "milestone_status": ""
+    }
+  }
+}

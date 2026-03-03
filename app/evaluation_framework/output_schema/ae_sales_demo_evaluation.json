@@ -1,0 +1,40 @@
+{
+  "call_type": "AE/Sales",
+  "sub_type": "Demo/Evaluation",
+  "output": {
+    "meeting_introduction": {
+      "prior_recap": "",
+      "demo_objectives": [],
+      "requested_scenarios": []
+    },
+    "smart_summary": [],
+    "solution_presentation": {
+      "features_demonstrated": [],
+      "value_alignment": "",
+      "high_engagement_moments": []
+    },
+    "technical_fit_and_gaps": {
+      "requirements_met": [],
+      "identified_gaps": [],
+      "proposed_workarounds": [],
+      "integration_concerns": ""
+    },
+    "prospect_reactions": {
+      "positive_signals": [],
+      "concerns_or_skepticism": [],
+      "confusion_points": []
+    },
+    "competitive_landscape": {
+      "benchmarked_features": [],
+      "incumbent_comparisons": ""
+    },
+    "next_steps": [
+      {
+        "owner": "",
+        "action": "",
+        "deadline": "",
+        "poc_related": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "call_type": "CSM/Post-Sale",
+  "sub_type": "QBR",
+  "output": {
+    "performance_review": {
+      "kpis_achieved": [],
+      "roi_delivered": ""
+    },
+    "success_metrics": {
+      "future_targets": [],
+      "measurement_methods": ""
+    },
+    "roadmap_alignment": {
+      "requested_features": [],
+      "beta_interest": false,
+      "feedback_summary": ""
+    },
+    "renewal_expansion": {
+      "timeline": "",
+      "upsell_potential": ""
+    },
+    "risk_items": [
+      {
+        "risk_type": "",
+        "mitigation_plan": ""
+      }
+    ],
+    "joint_action_plan": [
+      {
+        "task": "",
+        "responsible_party": "",
+        "due_date": ""
+      }
+    ]
+  }
+}

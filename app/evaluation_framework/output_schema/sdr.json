@@ -1,0 +1,35 @@
+{
+  "call_type": "SDR/Outbound",
+  "output": {
+    "call_context": {
+      "origination_type": "",
+      "prior_engagement_noted": "",
+      "icp_alignment": ""
+    },
+    "smart_summary": [],
+    "pitch_analysis": {
+      "opening_pitch": "",
+      "value_prop_used": "",
+      "prospect_engagement_level": ""
+    },
+    "objection_handling": [
+      {
+        "objection_theme": "",
+        "sdr_response_quality": "",
+        "outcome": ""
+      }
+    ],
+    "interest_signals": {
+      "positive_signals": [],
+      "questions_asked_by_prospect": [],
+      "explicit_disinterest": false
+    },
+    "outcome_metrics": {
+      "meeting_booked": false,
+      "follow_up_date": "",
+      "materials_requested": [],
+      "referral_to_ae": "",
+      "next_action": ""
+    }
+  }
+}

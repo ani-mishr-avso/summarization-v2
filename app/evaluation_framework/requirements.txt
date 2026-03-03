@@ -1,0 +1,10 @@
+# Core dependencies for LLM-as-a-Judge Evaluation Framework
+langchain-groq>=0.1.0
+langchain-core>=0.1.0
+langchain>=0.1.0
+
+# Optional but recommended
+python-dotenv>=1.0.0  # For environment variable management
+
+# Development dependencies (optional)
+pytest>=7.0.0  # For testing (if needed later)

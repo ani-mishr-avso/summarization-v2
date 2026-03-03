@@ -1,0 +1,38 @@
+{
+  "call_type": "AE/Sales",
+  "sub_type": "Negotiation/Close",
+  "output": {
+    "meeting_context": {
+      "deal_status": "",
+      "unresolved_points": []
+    },
+    "smart_summary": [],
+    "commercial_terms": {
+      "final_pricing": "",
+      "contract_duration": "",
+      "payment_terms": "",
+      "slas": ""
+    },
+    "legal_and_procurement": {
+      "red_line_items": [],
+      "compliance_status": "",
+      "procurement_workflow": ""
+    },
+    "concessions": {
+      "seller_gave_up": [],
+      "buyer_gave_up": []
+    },
+    "risk_signals": {
+      "stalling_indicators": [],
+      "competitor_re_evaluation": false,
+      "budget_concerns": ""
+    },
+    "path_to_close": [
+      {
+        "step": "",
+        "owner": "",
+        "target_date": ""
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "call_type": "CSM/Post-Sale",
+  "sub_type": "General Health Check",
+  "output": {
+    "relationship_context": {
+      "account_name": "",
+      "call_reason": "",
+      "last_interaction_recap": ""
+    },
+    "smart_summary": [],
+    "health_and_adoption": {
+      "adoption_status": "",
+      "features_mentioned": [],
+      "satisfaction_signals": ""
+    },
+    "issues_escalations": [
+      {
+        "ticket_id": "",
+        "issue": "",
+        "severity": ""
+      }
+    ],
+    "expansion_signals": {
+      "new_use_cases": [],
+      "seat_growth_interest": false,
+      "budget_availability": ""
+    },
+    "renewal_risk": {
+      "renewal_date": "",
+      "risk_factors": [],
+      "competitive_mentions": []
+    },
+    "action_plan": [
+      {
+        "owner": "",
+        "action": "",
+        "deadline": ""
+      }
+    ]
+  }
+}

@@ -18,7 +18,9 @@ MODEL_CONFIG = {
     # "model_name": "llama-3.3-70b-versatile",
     "temperature": 0.0,
     "max_tokens": 15000,
-    "api_key": os.getenv("GROQ_API_KEY", "")
+    "api_key": os.getenv("GROQ_API_KEY", ""),
+    "reasoning_effort": "medium",
+    "service_tier": "auto"
 }
 
 # Call Type Keywords for Layer 1 Validation
@@ -106,7 +108,7 @@ RUBRICS = {
                     }
                 },
                 "competitive_landscape": {
-                    "description": "Mention of incumbent tools or alternatives being evaluated.",
+                    "description": "Mention of incumbent tools or alternatives being evaluated along with understanding satisfaction level. This segment requires interpretation. Certain part of the output would be derived from observable transcript signals and direct explicit statements are not expected.",
                     "metrics": CORE_METRICS + ["business_relevance"],
                     "weights": {
                         "faithfulness": 1.0,
@@ -127,7 +129,7 @@ RUBRICS = {
                     }
                 },
                 "closing_remarks": {
-                    "description": "Final sentiment, relationship tone, and willingness to continue.",
+                    "description": "Final sentiment, relationship tone, and willingness to continue. This segment requires interpretation. Certain part of the output would be derived from observable transcript signals and direct explicit statements are not expected.",
                     "metrics": CORE_METRICS + ["business_relevance"],
                     "weights": {
                         "faithfulness": 1.0,
@@ -181,7 +183,7 @@ RUBRICS = {
                     }
                 },
                 "prospect_reactions": {
-                    "description": "Real-time sentiment during the demo—including excitement, skepticism, or confusion—and comparisons to incumbents.",
+                    "description": "Real-time sentiment during the demo—including excitement, skepticism, or confusion—and comparisons to incumbents. This segment requires interpretation. Certain part of the output would be derived from observable transcript signals and direct explicit statements are not expected.",
                     "metrics": CORE_METRICS + ["business_relevance"],
                     "weights": {
                         "faithfulness": 1.0,
@@ -341,7 +343,7 @@ RUBRICS = {
                     }
                 },
                 "risk_signals": {
-                    "description": "Indicators of stalling, budget freezes, stakeholder changes, or legal impasses.",
+                    "description": "Indicators of stalling, budget freezes, stakeholder changes, or legal impasses. This segment requires interpretation. Certain part of the output would be derived from observable transcript signals and direct explicit statements are not expected.",
                     "metrics": CORE_METRICS + ["business_relevance"],
                     "weights": {
                         "faithfulness": 1.0,
@@ -388,7 +390,7 @@ RUBRICS = {
                     }
                 },
                 "health_and_adoption": {
-                    "description": "Utilization patterns, feature adoption, and expressed satisfaction (NPS/CSAT signals).",
+                    "description": "Utilization patterns, feature adoption, and expressed satisfaction (NPS/CSAT signals). This segment requires interpretation. Certain part of the output would be derived from observable transcript signals and direct explicit statements are not expected.",
                     "metrics": CORE_METRICS + ["business_relevance"],
                     "weights": {
                         "faithfulness": 1.0,
@@ -539,7 +541,7 @@ RUBRICS = {
                 }
             },
             "blockers_risks": {
-                "description": "Issues preventing progress (e.g., data mapping errors, resource constraints) and identified risks to the timeline.",
+                "description": "Issues preventing progress (e.g., data mapping errors, resource constraints) and identified risks to the timeline. This segment requires interpretation. Certain part of the output would be derived from observable transcript signals and direct explicit statements are not expected.",
                 "metrics": CORE_METRICS + ["business_relevance"],
                 "weights": {
                     "faithfulness": 1.0,
@@ -719,59 +721,164 @@ CALL_TYPE_VALIDATION_PROMPTS = {
 
 # Action Item Evaluation Prompt
 ACTION_ITEM_EVALUATION_PROMPT = """
-You are an expert evaluator for sales call transcript analysis.
-Your task is to evaluate the quality of extracted information from a sales call transcript.
-Extracted information is bifurcated into multiple segment. Given the segment name, segment description,
-extracted information for that segment and entire transcript perform the evaluation.
+        You are a segment-level evaluator for structured sales call transcript analysis.
 
-TRANSCRIPT:
-{transcript}
+        Your task is to:
+        1. Extract structured counts for precision/recall calculation.
+        2. Evaluate timeline accuracy.
+        3. Evaluate owner attribution.
 
-SEGMENT NAME: {segment_name}
-SEGMENT DESCRIPTION: {segment_description}
-EXTRACTED CONTENT:
-{segment_text}
+        This evaluation is strictly segment-scoped.
+        Do NOT evaluate beyond what is required by the SEGMENT DESCRIPTION.
 
-TASK: Extract counts for precision and recall calculation, AND evaluate timeline accuracy AND owner attribution.
+        ------------------------------------------------------------
+        DEFINITION OF "ITEM"
+        ------------------------------------------------------------
 
-1. Count total actual items mentioned in the transcript
-2. Count how many items were captured in the extracted content  
-3. Count how many captured items are correct (present in transcript)
-4. Count total predicted items in extracted content
-5. Evaluate timeline accuracy: Are timelines and deadlines accurately captured?
-6. Evaluate owner attribution: Are responsible parties correctly identified for each task?
+        For this segment, an "item" refers to:
 
-Scoring Rubric for Timeline Accuracy and Owner Attribution (1-5 scale):
-        Metric: Timeline Accuracy
-        Definition: Degree to which the extracted timelines and deadlines are accurately reflected in the transcript.
-        Score 1: Fails to capture any temporal data even when specific deadlines were agreed upon.
-        Score 2: Assigns the wrong deadline to a task (e.g., "End of Month" instead of "End of Week").
-        Score 3: Identifies that a timeline exists but fails to capture the specific window mentioned.
-        Score 4: Timelines are generally correct but lack specificity (e.g., says "Soon" when the transcript says "By Tuesday").
-        Score 5: All dates (e.g., "Next Friday") are correctly identified and mapped to the correct calendar window.
+        A discrete, actionable unit required by the SEGMENT DESCRIPTION 
+        (e.g., next_steps, path_to_close, action_plan, joint_action_plan, action_items, outcome_metrics).
 
-        Metric: Owner Attribution
-        Definition: Degree to which the extracted responsible parties for tasks are correctly identified based on the transcript.
-        Score 1: Next steps are listed in passive voice (e.g., "Meeting will be set") with no owner identified.
-        Score 2: Frequent "swapping" of roles (e.g., assigning a "Send Quote" task to the Prospect).
-        Score 3: Significant confusion; at least one major task is assigned to the wrong party.
-        Score 4: One task has an ambiguous owner, but high-stakes tasks are correctly attributed.
-        Score 5: 100 percent of tasks are attributed to the correct speaker (e.g., Seller vs. Buyer).
+        Only count items that are relevant to this segment definition.
+        Do NOT count general conversational statements.
 
-Return JSON:
-{{
-    "total_actual_items": number,
-    "captured_items": number,
-    "correct_items": number,
-    "total_predicted_items": number,
-    "timeline_accuracy_score": number (1-5),
-    "timeline_accuracy_reason": "text",
-    "owner_attribution_score": number (1-5),
-    "owner_attribution_reason": "text",
-    "analysis": "brief explanation of counts"
-}}
+        ------------------------------------------------------------
+        COUNTING RULES
+        ------------------------------------------------------------
 
-Do NOT calculate precision/recall - only extract the counts and evaluate timeline accuracy and owner attribution.
-Do not output any text outside this JSON.
-Do not restate instructions.
+        1. total_actual_items:
+           Number of distinct segment-relevant items explicitly stated in the transcript.
+
+        2. total_predicted_items:
+           Number of distinct items listed in the extracted content.
+
+        3. correct_items:
+           Number of predicted items that are factually supported by the transcript 
+           and correctly captured (including correct owner and correct timeline if applicable).
+
+        4. captured_items:
+           Number of actual transcript items that were successfully captured 
+           in the extracted content (regardless of minor wording differences).
+
+        Important:
+        - An item counts as correct only if it matches the transcript in substance.
+        - If a predicted item does not exist in the transcript, it must NOT count as correct.
+        - Do NOT infer items that are not explicitly stated.
+
+        Do NOT calculate precision or recall.
+        Only return raw counts.
+
+        ------------------------------------------------------------
+        TIMELINE ACCURACY RULE
+        ------------------------------------------------------------
+
+        Evaluate timeline accuracy ONLY for items in this segment that include temporal references.
+
+        - Do NOT penalize relative timelines (e.g., "next week") if they match transcript wording.
+        - Penalize incorrect, swapped, or fabricated timelines.
+        - If no timelines exist in transcript for this segment, assign score 5 and state that no timelines were present.
+
+        ------------------------------------------------------------
+        OWNER ATTRIBUTION RULE
+        ------------------------------------------------------------
+
+        Evaluate owner attribution ONLY for segment-relevant items.
+
+        - Check whether responsible parties are correctly assigned.
+        - Penalize swapped roles or fabricated ownership.
+        - If no owners were specified in the transcript for this segment, assign score 5 and state that no ownership was defined.
+
+        ------------------------------------------------------------
+        INPUTS
+        ------------------------------------------------------------
+
+        TRANSCRIPT:
+        {transcript}
+
+        SEGMENT NAME:
+        {segment_name}
+
+        SEGMENT DESCRIPTION:
+        {segment_description}
+
+        EXTRACTED CONTENT:
+        {segment_text}
+
+        ------------------------------------------------------------
+        OUTPUT FORMAT (STRICT JSON ONLY)
+        ------------------------------------------------------------
+
+        {{
+          "total_actual_items": number,
+          "total_predicted_items": number,
+          "correct_items": number,
+          "captured_items": number,
+          "timeline_accuracy_score": number,
+          "timeline_accuracy_reason": "text",
+          "owner_attribution_score": number,
+          "owner_attribution_reason": "text",
+          "analysis": "Brief explanation of how counts were derived"
+        }}
+
+        Do not output any text outside this JSON.
+        Do not restate instructions.
+
 """
+# ACTION_ITEM_EVALUATION_PROMPT = """
+# You are an expert evaluator for sales call transcript analysis.
+# Your task is to evaluate the quality of extracted information from a sales call transcript.
+# Extracted information is bifurcated into multiple segment. Given the segment name, segment description,
+# extracted information for that segment and entire transcript perform the evaluation.
+
+# TRANSCRIPT:
+# {transcript}
+
+# SEGMENT NAME: {segment_name}
+# SEGMENT DESCRIPTION: {segment_description}
+# EXTRACTED CONTENT:
+# {segment_text}
+
+# TASK: Extract counts for precision and recall calculation, AND evaluate timeline accuracy AND owner attribution.
+
+# 1. Count total actual items mentioned in the transcript
+# 2. Count how many items were captured in the extracted content  
+# 3. Count how many captured items are correct (present in transcript)
+# 4. Count total predicted items in extracted content
+# 5. Evaluate timeline accuracy: Are timelines and deadlines accurately captured? Do NOT penalize for relative timelines (e.g., "Next Week") as long as they are consistent with the transcript, but do penalize for incorrect timelines or missing timelines when they were explicitly mentioned in the transcript?
+# 6. Evaluate owner attribution: Are responsible parties correctly identified for each task?
+
+# Scoring Rubric for Timeline Accuracy and Owner Attribution (1-5 scale):
+#         Metric: Timeline Accuracy
+#         Definition: Degree to which the extracted timelines and deadlines are accurately reflected in the transcript.
+#         Score 1: Fails to capture any temporal data even when specific deadlines were agreed upon.
+#         Score 2: Assigns the wrong deadline to a task (e.g., "End of Month" instead of "End of Week").
+#         Score 3: Identifies that a timeline exists but fails to capture the specific window mentioned.
+#         Score 4: Timelines are generally correct but lack specificity (e.g., says "Soon" when the transcript says "By Tuesday").
+#         Score 5: All dates (e.g., "Next Friday") are correctly identified and mapped to the correct calendar window.
+
+#         Metric: Owner Attribution
+#         Definition: Degree to which the extracted responsible parties for tasks are correctly identified based on the transcript.
+#         Score 1: Next steps are listed in passive voice (e.g., "Meeting will be set") with no owner identified.
+#         Score 2: Frequent "swapping" of roles (e.g., assigning a "Send Quote" task to the Prospect).
+#         Score 3: Significant confusion; at least one major task is assigned to the wrong party.
+#         Score 4: One task has an ambiguous owner, but high-stakes tasks are correctly attributed.
+#         Score 5: 100 percent of tasks are attributed to the correct speaker (e.g., Seller vs. Buyer).
+
+# Return JSON:
+# {{
+#     "total_actual_items": number,
+#     "captured_items": number,
+#     "correct_items": number,
+#     "total_predicted_items": number,
+#     "timeline_accuracy_score": number (1-5),
+#     "timeline_accuracy_reason": "text",
+#     "owner_attribution_score": number (1-5),
+#     "owner_attribution_reason": "text",
+#     "analysis": "brief explanation of counts"
+# }}
+
+# Do NOT calculate precision/recall - only extract the counts and evaluate timeline accuracy and owner attribution.
+# Do not output any text outside this JSON.
+# Do not restate instructions.
+# """

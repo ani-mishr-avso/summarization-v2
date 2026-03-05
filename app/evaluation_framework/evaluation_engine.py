@@ -52,7 +52,9 @@ class EvaluationEngine:
                 model=self.model_config["model_name"],
                 temperature=self.model_config["temperature"],
                 api_key=os.getenv("GROQ_API_KEY"),
-                max_tokens=self.model_config.get("max_tokens", 15000)
+                max_tokens=self.model_config.get("max_tokens", 15000),
+                reasoning_effort=self.model_config.get("reasoning_effort", "medium"),
+                service_tier=self.model_config.get("service_tier", "auto")
             )
         
         else:
@@ -612,8 +614,13 @@ class EvaluationEngine:
 
         All factual claims in the extracted content must be verifiable in the transcript.
 
-        If information is inferred but not directly supported:
-        - Reduce Faithfulness accordingly.
+        If the segment requires interpretation (as defined in the segment description),
+        inference is allowed provided it is reasonably supported by transcript evidence.
+
+        Only penalize Faithfulness if:
+        - The inference contradicts the transcript
+        - The inference has no reasonable supporting evidence
+        - The inference exaggerates the transcript signals
 
         If the transcript does NOT contain certain expected information:
         - Do NOT penalize Completeness for its absence.
@@ -647,7 +654,7 @@ class EvaluationEngine:
         For each metric:
         - Assign a score from 1 to 5.
         - Provide a concise justification (1 to 2 sentences). Base reasoning strictly on the segment scope.
-        - Provide Specific detail i.e. for Faithfulness: hallucination, for completeness: Omission, for Business Relevance: irrelevant_information. Do NOT provide generic feedback like "good job" or "needs improvement" without specific details.
+        - Provide Specific detail i.e. for Faithfulness: hallucination, for completeness: Omission, for Business Relevance: irrelevant_information. Do NOT provide generic feedback like "good job" or "needs improvement" without specific details. Nothing required for Conciseness.
 
         ------------------------------------------------------------
 
@@ -685,6 +692,16 @@ class EvaluationEngine:
         Score 4: Strong focus with minimal irrelevant details.
         Score 5: Fully focused and concise for this segment’s purpose.
 
+        Metric: Conciseness
+        Definition: Evaluate how efficiently the response delivers relevant information without unnecessary verbosity, redundancy, or tangential content. Conciseness measures informational density, not length alone. A concise response provides sufficient detail to be complete, but avoids filler, repetition, or over explanation.
+
+        Score 1: Very Low Conciseness. Majority of the response includes filler, repetition, or irrelevant content. Poor signal-to-noise ratio.
+        Score 2: Low Conciseness. Significant verbosity, repeated points, or unnecessary elaboration. Multiple sections could be removed without affecting completeness.
+        Score 3: Moderately Concise. Noticeable redundancy, mild repetition, or limited tangential content. Some sections could be shortened without losing meaning.
+        Score 4: Mostly Concise. Minor verbosity or small redundant phrases, but overall efficient and focused. No meaningful tangents.
+        Score 5: Highly Concise. The response contains only task-relevant information. No redundancy, filler, repetition, or unnecessary elaboration. Efficient and tightly scoped.
+
+
         ------------------------------------------------------------
         OUTPUT FORMAT (STRICT JSON ONLY)
         ------------------------------------------------------------
@@ -705,6 +722,10 @@ class EvaluationEngine:
             "score": number,
             "reason": "text",
             "irrelevant_information": "specific irrelevant content if score < 5, else 'None'"
+            }},
+            "Conciseness": {{
+            "score": number,
+            "reason": "text"
             }}
         }}
         }}
@@ -763,6 +784,9 @@ class EvaluationEngine:
                 irrelevant_match = re.search(r'irrelevant_information[:\s]+(.+?)(?=\n|$)', response, re.IGNORECASE | re.DOTALL)
                 specific_details = irrelevant_match.group(1).strip() if irrelevant_match else "None"
                 specific_details_key = "irrelevant_information"
+            else:
+                specific_details_key = "specific_details"
+                specific_details = "N/A for this metric"
             
             metric_scores[metric] = {
                 "score": max(1, min(5, score)),  # Ensure score is between 1-5

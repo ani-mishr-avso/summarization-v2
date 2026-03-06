@@ -721,109 +721,125 @@ CALL_TYPE_VALIDATION_PROMPTS = {
 
 # Action Item Evaluation Prompt
 ACTION_ITEM_EVALUATION_PROMPT = """
-        You are a segment-level evaluator for structured sales call transcript analysis.
+You are a segment-level evaluator for structured sales call transcript analysis.
 
-        Your task is to:
-        1. Extract structured counts for precision/recall calculation.
-        2. Evaluate timeline accuracy.
-        3. Evaluate owner attribution.
+Your task is to:
+1. Extract structured counts for precision/recall calculation.
+2. Evaluate timeline accuracy.
+3. Evaluate owner attribution.
 
-        This evaluation is strictly segment-scoped.
-        Do NOT evaluate beyond what is required by the SEGMENT DESCRIPTION.
+This evaluation is strictly segment-scoped.
+Do NOT evaluate beyond what is required by the SEGMENT DESCRIPTION.
 
-        ------------------------------------------------------------
-        DEFINITION OF "ITEM"
-        ------------------------------------------------------------
+------------------------------------------------------------
+DEFINITION OF VALID ACTION ITEM
+------------------------------------------------------------
 
-        For this segment, an "item" refers to:
+For this segment, an "item" refers to a meaningful, actionable next step agreed upon during the meeting.
 
-        A discrete, actionable unit required by the SEGMENT DESCRIPTION 
-        (e.g., next_steps, path_to_close, action_plan, joint_action_plan, action_items, outcome_metrics).
+Valid items should:
+- Represent concrete follow-up work or commitments
+- Be specific enough to guide post-meeting action
+- Be relevant to business progress
 
-        Only count items that are relevant to this segment definition.
-        Do NOT count general conversational statements.
+Examples of VALID items:
+- Send proposal
+- Share pricing document
+- Schedule technical demo
+- Review contract internally
+- Provide product documentation
 
-        ------------------------------------------------------------
-        COUNTING RULES
-        ------------------------------------------------------------
+Examples that should NOT be counted as items:
+- Routine conversational follow-ups
+- Generic check-ins (e.g., "follow up later", "check in", "touch base")
+- Vague conversational remarks
+- Small talk logistics (e.g., "talk again in an hour")
 
-        1. total_actual_items:
-           Number of distinct segment-relevant items explicitly stated in the transcript.
+Only count substantive meeting outcomes that clearly represent actionable next steps.
 
-        2. total_predicted_items:
-           Number of distinct items listed in the extracted content.
+------------------------------------------------------------
+COUNTING RULES
+------------------------------------------------------------
 
-        3. correct_items:
-           Number of predicted items that are factually supported by the transcript 
-           and correctly captured (including correct owner and correct timeline if applicable).
+1. total_actual_items:
+   Number of distinct valid action items explicitly stated in the transcript.
 
-        4. captured_items:
-           Number of actual transcript items that were successfully captured 
-           in the extracted content (regardless of minor wording differences).
+2. total_predicted_items:
+   Number of action items listed in the extracted content.
 
-        Important:
-        - An item counts as correct only if it matches the transcript in substance.
-        - If a predicted item does not exist in the transcript, it must NOT count as correct.
-        - Do NOT infer items that are not explicitly stated.
+3. captured_items:
+   Number of transcript action items that appear in the extracted content
+   based on semantic meaning (wording may differ).
 
-        Do NOT calculate precision or recall.
-        Only return raw counts.
+4. correct_items:
+   Number of predicted items that correspond to a valid action item in the transcript.
 
-        ------------------------------------------------------------
-        TIMELINE ACCURACY RULE
-        ------------------------------------------------------------
+Important constraints:
 
-        Evaluate timeline accuracy ONLY for items in this segment that include temporal references.
+- Matching should be **semantic**, not exact wording.
+- Do NOT penalize for incorrect owner attribution.
+- Do NOT penalize for incorrect timelines.
+- Owner and timeline accuracy are evaluated separately and must NOT affect these counts.
+- If a predicted item does not exist in the transcript, it must NOT count as correct.
 
-        - Do NOT penalize relative timelines (e.g., "next week") if they match transcript wording.
-        - Penalize incorrect, swapped, or fabricated timelines.
-        - If no timelines exist in transcript for this segment, assign score 5 and state that no timelines were present.
+Do NOT calculate precision or recall. Only return the counts.
 
-        ------------------------------------------------------------
-        OWNER ATTRIBUTION RULE
-        ------------------------------------------------------------
+------------------------------------------------------------
+TIMELINE ACCURACY RULE
+------------------------------------------------------------
 
-        Evaluate owner attribution ONLY for segment-relevant items.
+Evaluate timeline accuracy only for items that include timelines.
 
-        - Check whether responsible parties are correctly assigned.
-        - Penalize swapped roles or fabricated ownership.
-        - If no owners were specified in the transcript for this segment, assign score 5 and state that no ownership was defined.
+Guidelines:
+- Do NOT penalize relative timelines (e.g., "next week") if they match the transcript intent.
+- Penalize incorrect, swapped, or fabricated timelines.
+- If no timelines exist in transcript items for this segment, assign score 5 and explain that no timelines were present.
 
-        ------------------------------------------------------------
-        INPUTS
-        ------------------------------------------------------------
+------------------------------------------------------------
+OWNER ATTRIBUTION RULE
+------------------------------------------------------------
 
-        TRANSCRIPT:
-        {transcript}
+Evaluate whether responsible parties for action items are correctly identified.
 
-        SEGMENT NAME:
-        {segment_name}
+Guidelines:
+- Penalize incorrect or swapped ownership.
+- If ownership is ambiguous in the transcript, do not penalize.
+- If no ownership is specified in transcript items, assign score 5 and explain that ownership was not defined.
 
-        SEGMENT DESCRIPTION:
-        {segment_description}
+------------------------------------------------------------
+INPUTS
+------------------------------------------------------------
 
-        EXTRACTED CONTENT:
-        {segment_text}
+TRANSCRIPT:
+{transcript}
 
-        ------------------------------------------------------------
-        OUTPUT FORMAT (STRICT JSON ONLY)
-        ------------------------------------------------------------
+SEGMENT NAME:
+{segment_name}
 
-        {{
-          "total_actual_items": number,
-          "total_predicted_items": number,
-          "correct_items": number,
-          "captured_items": number,
-          "timeline_accuracy_score": number,
-          "timeline_accuracy_reason": "text",
-          "owner_attribution_score": number,
-          "owner_attribution_reason": "text",
-          "analysis": "Brief explanation of how counts were derived"
-        }}
+SEGMENT DESCRIPTION:
+{segment_description}
 
-        Do not output any text outside this JSON.
-        Do not restate instructions.
+EXTRACTED CONTENT:
+{segment_text}
 
+------------------------------------------------------------
+OUTPUT FORMAT (STRICT JSON ONLY)
+------------------------------------------------------------
+
+{
+  "total_actual_items": number,
+  "total_predicted_items": number,
+  "captured_items": number,
+  "correct_items": number,
+  "timeline_accuracy_score": number,
+  "timeline_accuracy_reason": "text",
+  "owner_attribution_score": number,
+  "owner_attribution_reason": "text",
+  "analysis": "Brief explanation of how the precision/recall counts were determined. Do NOT discuss timeline or owner evaluation."
+}
+
+Do not output any text outside this JSON.
+Do not restate instructions.
 """
 # ACTION_ITEM_EVALUATION_PROMPT = """
 # You are an expert evaluator for sales call transcript analysis.

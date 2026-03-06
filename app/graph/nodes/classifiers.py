@@ -36,27 +36,6 @@ def level_1_classifier(state: CallState):
     """
     Distinguishes between AE/Sales, Internal, CSM, and SDR calls.
     """
-    # Logic for High-Confidence Internal Detection
-    # is_internal_only = all(
-    #     d in state["metadata"].get("internal_domains", [])
-    #     for d in state["metadata"].get("participant_domains", [])
-    # )
-
-    # if is_internal_only:
-    #     out = {
-    #         "call_type": "Internal/Implementation",
-    #         "confidence_level": "VERY HIGH",
-    #         "reasoning": "All participants are from internal domains",
-    #     }
-    #     logger.info(
-    #         "Level 1 classifier: call_type=%s confidence_level=%s reasoning=%s",
-    #         out["call_type"],
-    #         out["confidence_level"],
-    #         out["reasoning"],
-    #     )
-    #     logger.info("Level 1 classifier: Internal/Implementation detected")
-    #     return out
-
     logger.info("Level 1 classifier: Calling _classify")
     out = _classify(
         prompt_name="level_1",

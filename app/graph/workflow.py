@@ -29,40 +29,32 @@ def routing_logic(state: CallState):
     Determines the expert path based on confidence and call type.
     """
     logger.info(
-        "Call Type: %s, Confidence Level: %s, Transcript Length: %s",
+        "Call Type: %s, Confidence Level: %s, Transcript Length: %s words",
         state["call_type"],
         state["confidence_level"],
         len(state["transcript"].split()),
     )
     cfg = get_routing_config()
-    threshold = cfg["confidence_threshold"]
-    min_words = cfg["min_word_count"]
+    fallback_confidence_levels = cfg["fallback_confidence_levels"]
+    min_word_count = cfg["min_word_count"]
     call_type_to_path = cfg["call_type_to_path"]
 
-    logger.info(
-        "Routing logic: confidence_threshold=%s min_word_count=%s call_type_to_path=%s",
-        threshold,
-        min_words,
-        call_type_to_path,
-    )
-
     if (
-        state["confidence_level"] in {"LOW", "MEDIUM"}
-        or len(state["transcript"].split()) < min_words
+        state["confidence_level"] in fallback_confidence_levels
+        or len(state["transcript"].split()) < min_word_count
     ):
         logger.info("Routing to fallback")
         path = "fallback"
     else:
-        logger.info("Routing to %s", call_type_to_path.get(state["call_type"], "fallback"))
         path = call_type_to_path.get(state["call_type"], "fallback")
 
     logger.info(
-        "routing_logic: call_type=%s confidence_level=%s path=%s",
+        "Routing logic: call_type=%s confidence_level=%s path=%s",
         state["call_type"],
         state["confidence_level"],
         path,
     )
-    return path    
+    return path
 
 
 # --- Graph Construction ---

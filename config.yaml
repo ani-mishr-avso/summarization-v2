@@ -13,7 +13,7 @@ technical_llm:
   service_tier: "auto"
 
 routing:
-  confidence_threshold: 0.70
+  fallback_confidence_levels: {"LOW", "MEDIUM"}
   min_word_count: 200
   call_type_to_path:
     "AE/Sales": "ae_path"

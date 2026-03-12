@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 
 class SummarizeRequest(BaseModel):
-    transcript: str = Field(..., description="Plain text transcript to summarize")
+    transcript: list[dict[str, Any]] = Field(..., description="Transcript with speaker labels and timestamps")
     metadata: dict[str, Any] = Field(default_factory=dict, description="Optional metadata (e.g. meeting_title, participant_domains, internal_domains)")
     org_config: dict[str, Any] = Field(default_factory=dict, description="Optional org config (e.g. sales_methodology)")
 

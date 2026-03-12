@@ -31,47 +31,6 @@ def _turn_entry(id_counter: int, words: list[dict], speaker_id: int) -> TurnEntr
     )
 
 
-def _speaker_turns(parsed_transcript: list[TurnEntry]) -> dict[str, Speaker]:
-    """
-    Create a nested dictionary of speaker turns from a parsed transcript.
-
-    Args:
-        parsed_transcript (list[dict]): The parsed transcript.
-
-    Returns:
-        dict[str, dict]: A nested dictionary with speaker label as key, each containing
-                         'turns' (list of turns), 'num_turns' (int), 'total_duration' (float), and 
-                         'longest_turn_duration' (float).
-    """
-    speakers_turns = defaultdict(lambda: Speaker())
-    for turn in parsed_transcript:
-        speaker_label = turn.speaker_label
-        duration = turn.duration
-        s = speakers_turns[speaker_label]
-        s.turns.append(turn)
-        s.num_turns += 1
-        s.total_duration += duration
-        if duration > s.longest_turn_duration:
-            s.longest_turn_duration = duration
-    return dict(speakers_turns)
-
-
-def _speaker_talk_percentages(speaker_turns: dict[str, Speaker]) -> dict[str, float]:
-    """
-    Calculate the talk percentages for each speaker.
-
-    Args:
-        speaker_turns (dict[str, Speaker]): The speaker turns with speaker label as key and Speaker object as value.
-
-    Returns:
-        dict[str, float]: A dictionary with speaker label as key and talk percentage as value.
-    """
-    total_duration = sum(speaker.total_duration for speaker in speaker_turns.values())
-    if total_duration == 0:
-        return {label: 0.0 for label in speaker_turns}
-    return {label: round(s.total_duration / total_duration, 4) for label, s in speaker_turns.items()}
-
-
 def parse_transcript(json_file_path: str) -> list[TurnEntry]:
     """
     Parse a transcript from a JSON file.
@@ -116,19 +75,9 @@ def is_short_transcript(parsed_transcript: list[TurnEntry], min_duration: float 
     Returns:
         bool: True if the transcript is short, False otherwise.
     """
-    start_time = float(parsed_transcript[0].start_time)
-    end_time = float(parsed_transcript[-1].end_time)
+    start_time = float(parsed_transcript[0]['start_time'])
+    end_time = float(parsed_transcript[-1]['end_time'])
     return end_time - start_time < min_duration
-
-
-def _format_timestamp(timestamp: float) -> str:
-    """
-    Format a timestamp (in seconds) as a string in the format "HH:MM:SS".
-    """
-    total_seconds = int(timestamp)
-    hours, remainder = divmod(total_seconds, 3600)
-    minutes, seconds = divmod(remainder, 60)
-    return f"{hours:02}:{minutes:02}:{seconds:02}"
 
 
 def format_transcript(parsed_transcript: list[TurnEntry], label_map: dict) -> str:
@@ -144,15 +93,14 @@ def format_transcript(parsed_transcript: list[TurnEntry], label_map: dict) -> st
 
     formatted_transcript = ""
     for turn in parsed_transcript:
-        timestamp = _format_timestamp(turn.start_time)
-        speaker = label_map.get(turn.speaker_label, turn.speaker_label)
-        utterance = turn.text
+        speaker = label_map.get(turn['speaker_label'], turn['speaker_label'])
+        utterance = turn['sentence']
         formatted_transcript += f"{speaker}: {utterance}\n"
 
     return formatted_transcript
 
 
-def get_duration_mins(transcript: list[TurnEntry]) -> int:
+def get_duration_mins(transcript: list[dict]) -> int:
     """
     Get the duration of a transcript in minutes.
     
@@ -161,7 +109,7 @@ def get_duration_mins(transcript: list[TurnEntry]) -> int:
     Returns:
         int: The duration of the transcript in minutes.
     """
-    start_time = transcript[0].start_time
-    end_time = transcript[-1].end_time
+    start_time = transcript[0]['start_time']
+    end_time = transcript[-1]['end_time']
     duration_mins = int(round((end_time - start_time) / 60))
     return duration_mins

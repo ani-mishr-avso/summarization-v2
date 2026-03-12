@@ -1,35 +1,53 @@
 import logging
 import os
-import re
 
 from fastapi import APIRouter, HTTPException
 
 from app.api.schemas import RecomputeRequest, SummarizeRequest
+from app.common.email_utils import parse_user_map
 from app.graph import app
 from app.transcript_parser.parser import format_transcript, get_duration_mins
+from typing import Any
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-EMAIL_DOMAIN_PATTERN = re.compile(r".+@(?P<domain>.+)$")
+
+def _prepare_transcript_context(
+    body: SummarizeRequest | RecomputeRequest,
+) -> dict[str, Any]:
+    """Build transcript text and metadata shared by summarize/recompute."""
+    speaker_labels, domains = parse_user_map(body.metadata["user_map"])
+    formatted_transcript = format_transcript(body.transcript, speaker_labels)
+    duration_mins = get_duration_mins(body.transcript)
+    metadata = {
+        "meeting_title": body.metadata["topic"],
+        "duration_mins": duration_mins,
+        "participant_domains": domains,
+        "internal_domains": body.metadata.get("internal_domains", []),
+    }
+    return {
+        "transcript": formatted_transcript,
+        "metadata": metadata,
+    }
 
 
-def get_email_domain(email):
-    match = EMAIL_DOMAIN_PATTERN.match(email)
-    if match:
-        return match.groupdict()["domain"]
-    return
+async def _invoke_graph(
+    initial_state: dict[str, Any], success_label: str, failure_label: str
+):
+    """Call the summarizer graph with standardized error handling and logging."""
+    try:
+        result = await app.ainvoke(initial_state)
+    except Exception as e:
+        logger.error("%s failed: %s", failure_label, e, exc_info=True)
+        raise HTTPException(
+            status_code=503,
+            detail=f"{failure_label} failed: {str(e)}",
+        ) from e
 
-
-def parse_user_map(user_map):
-    speaker_labels = {}
-    domains = set()
-    for user_id, info in user_map.items():
-        speaker_labels[user_id] = info["name"]
-        email = info.get("email")
-        if email:
-            domains.add(get_email_domain(email))
-    return speaker_labels, domains
+    call_type = result.get("call_type", "unknown")
+    logger.info("%s completed, call_type=%s", success_label, call_type)
+    return {k: v for k, v in result.items() if v is not None}
 
 
 @router.get("/health")
@@ -52,44 +70,21 @@ async def summarize(body: SummarizeRequest):
     transcript_len = len(body.transcript)
     logger.info("Summarize request started, transcript_length=%d turns", transcript_len)
 
-    speaker_labels, domains = parse_user_map(body.metadata["user_map"])
-    formatted_transcript = format_transcript(body.transcript, speaker_labels)
-    duration_mins = get_duration_mins(body.transcript)
-    metadata = {
-        "meeting_title": body.metadata["topic"],
-        "duration_mins": duration_mins,
-        "participant_domains": domains,
-        "internal_domains": body.metadata.get("internal_domains", []),
+    context = _prepare_transcript_context(body)
+    initial_state = {
+        **context,
+        "org_config": body.org_config,
     }
-
-    try:
-        result = await app.ainvoke(
-            {
-                "transcript": formatted_transcript,
-                "metadata": metadata,
-                "org_config": body.org_config,
-            }
-        )
-    except Exception as e:
-        logger.error("Summarization failed: %s", e, exc_info=True)
-        raise HTTPException(
-            status_code=503,
-            detail=f"Summarization failed: {str(e)}",
-        ) from e
-    call_type = result.get("call_type", "unknown")
-    logger.info("Summarize completed, call_type=%s", call_type)
-    out = {k: v for k, v in result.items() if v is not None}
-    return out
+    return await _invoke_graph(initial_state, "Summarize", "Summarization")
 
 
 @router.post("/recompute", response_model=None)
 async def recompute(body: RecomputeRequest):
-    """Re-run the summarizer graph with user-corrected L1/L2 classifications.
+    """Re-execute the summarizer graph using user-specified L1 and/or L2 classification overrides.
 
-    When ``call_type`` is supplied the L1 classifier node will detect it and
-    skip the LLM call entirely.  When ``ae_stage`` is additionally supplied
-    (only relevant for AE/Sales calls) the L2 classifier node is also skipped.
-    Both values flow through the graph unchanged into the expert agents.
+    If ``call_type`` is provided, the L1 classifier node recognizes this and bypasses its LLM call.
+    Likewise, if ``ae_stage`` is also provided (applicable only to AE/Sales calls), the L2 classifier node is skipped.
+    In both cases, the supplied values are passed unchanged through the graph to the expert agents.
     """
     transcript_len = len(body.transcript)
     logger.info(
@@ -99,21 +94,11 @@ async def recompute(body: RecomputeRequest):
         body.ae_stage,
     )
 
-    speaker_labels, domains = parse_user_map(body.metadata["user_map"])
-    formatted_transcript = format_transcript(body.transcript, speaker_labels)
-    duration_mins = get_duration_mins(body.transcript)
-    metadata = {
-        "meeting_title": body.metadata["topic"],
-        "duration_mins": duration_mins,
-        "participant_domains": domains,
-        "internal_domains": body.metadata.get("internal_domains", []),
-    }
-
+    context = _prepare_transcript_context(body)
     # Seed the initial state with user-provided overrides; the classifier nodes
     # will detect these and bypass their LLM calls.
     initial_state = {
-        "transcript": formatted_transcript,
-        "metadata": metadata,
+        **context,
         "org_config": body.org_config,
     }
     if body.call_type is not None:
@@ -121,16 +106,4 @@ async def recompute(body: RecomputeRequest):
     if body.ae_stage is not None:
         initial_state["ae_stage"] = body.ae_stage
 
-    try:
-        result = await app.ainvoke(initial_state)
-    except Exception as e:
-        logger.error("Recompute failed: %s", e, exc_info=True)
-        raise HTTPException(
-            status_code=503,
-            detail=f"Recompute failed: {str(e)}",
-        ) from e
-
-    call_type = result.get("call_type", "unknown")
-    logger.info("Recompute completed, call_type=%s", call_type)
-    out = {k: v for k, v in result.items() if v is not None}
-    return out
+    return await _invoke_graph(initial_state, "Recompute", "Recompute")

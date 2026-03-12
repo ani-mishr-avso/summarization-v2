@@ -23,8 +23,11 @@ Analyze the provided meeting transcript and metadata to determine the primary pu
 
 ### OUTPUT FORMAT
 {
-  "reasoning": "A brief explanation of why this classification was chosen based on specific transcript signals.",
+  "call_type_reasoning": "A brief explanation of why this classification was chosen based on specific transcript signals.",
   "call_type": "STRING",
   "confidence_level": "LOW" | "MEDIUM" | "HIGH" | "VERY HIGH",
-  "primary_topics": ["TOPIC1", "TOPIC2"]
+  "participant_roles": {
+    "name": "STRING",
+    "role": "STRING"
+  }
 }

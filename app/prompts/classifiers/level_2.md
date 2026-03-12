@@ -18,7 +18,8 @@ You are an expert in sales methodologies. For calls already classified as "AE/Sa
 ## JSON Schema
 {
   "ae_stage": "Discovery/Qualification" | "Demo/Evaluation" | "Proposal/Business Case" | "Negotiation/Close",
-  "confidence_score": 0.00,
+  "ae_stage_reasoning": "A brief explanation of why this classification was chosen based on specific transcript signals.",
+  "confidence_level": "LOW" | "MEDIUM" | "HIGH" | "VERY HIGH",
   "detected_signals": ["pricing", "legal", "roi"],
   "crm_alignment": true | false
 }

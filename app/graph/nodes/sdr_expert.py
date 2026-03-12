@@ -1,4 +1,4 @@
-from app.graph.nodes.common import run_simple_expert
+from app.graph.nodes.expert_runner import run_simple_expert
 from app.graph.state import CallState
 
 

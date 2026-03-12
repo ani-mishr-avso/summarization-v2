@@ -1,4 +1,4 @@
-"""Shared helpers for graph nodes."""
+"""Shared helpers for running single-summary expert nodes."""
 
 import logging
 

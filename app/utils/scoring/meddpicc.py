@@ -1,7 +1,7 @@
 from typing import Any
 
 from app.config import get_meddpicc_config
-from app.utils.stage import normalize_ae_stage
+from app.utils.ae_stage import normalize_ae_stage
 
 
 def _dimensions_to_dict(dimensions: Any) -> dict[str, dict[str, Any]]:

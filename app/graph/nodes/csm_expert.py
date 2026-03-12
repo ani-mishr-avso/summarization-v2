@@ -1,7 +1,7 @@
 import logging
 
 from app.config import get_csm_config
-from app.graph.nodes.common import run_simple_expert
+from app.graph.nodes.expert_runner import run_simple_expert
 from app.graph.state import CallState
 from app.utils.logger import get_logger
 

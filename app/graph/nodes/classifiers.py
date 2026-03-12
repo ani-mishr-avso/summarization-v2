@@ -35,7 +35,24 @@ def _classify(
 def level_1_classifier(state: CallState):
     """
     Distinguishes between AE/Sales, Internal, CSM, and SDR calls.
+
+    If ``call_type`` is already set in the state (e.g. user-provided override
+    via the /recompute endpoint) the LLM classification is skipped entirely and
+    ``confidence_level`` is forced to ``"HIGH"`` so that the routing logic does
+    not send the call to the fallback expert.
     """
+    if state.get("call_type"):
+        logger.info(
+            "Level 1 classifier: call_type already set to '%s', bypassing LLM classification",
+            state["call_type"],
+        )
+        # Force HIGH confidence so routing_logic does not divert to fallback
+        return {
+            "call_type": state["call_type"],
+            "confidence_level": "HIGH",
+            "reasoning": "As provided by user",
+        }
+
     logger.info("Level 1 classifier: Calling _classify")
     out = _classify(
         prompt_name="level_1",
@@ -55,7 +72,17 @@ def level_1_classifier(state: CallState):
 def level_2_ae_classifier(state: CallState):
     """
     Determines the AE stage (Discovery, Demo, Proposal, Close).
+
+    If ``ae_stage`` is already set in the state (e.g. user-provided override
+    via the /recompute endpoint) the LLM classification is skipped entirely.
     """
+    if state.get("ae_stage"):
+        logger.info(
+            "Level 2 AE classifier: ae_stage already set to '%s', bypassing LLM classification",
+            state["ae_stage"],
+        )
+        return {"ae_stage": state["ae_stage"]}
+
     logger.info("Level 2 AE classifier: Calling _classify")
     out = _classify(
         prompt_name="level_2",
@@ -69,3 +96,4 @@ def level_2_ae_classifier(state: CallState):
     )
     logger.info("Level 2 AE classifier: %s", out)
     return out
+

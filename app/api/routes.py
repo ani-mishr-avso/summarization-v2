@@ -4,7 +4,7 @@ import re
 
 from fastapi import APIRouter, HTTPException
 
-from app.api.schemas import SummarizeRequest
+from app.api.schemas import RecomputeRequest, SummarizeRequest
 from app.graph import app
 from app.transcript_parser.parser import format_transcript, get_duration_mins
 
@@ -95,5 +95,59 @@ async def summarize(body: SummarizeRequest):
         ) from e
     call_type = result.get("call_type", "unknown")
     logger.info("Summarize completed, call_type=%s", call_type)
+    out = {k: v for k, v in result.items() if v is not None}
+    return out
+
+
+@router.post("/recompute", response_model=None)
+async def recompute(body: RecomputeRequest):
+    """Re-run the summarizer graph with user-corrected L1/L2 classifications.
+
+    When ``call_type`` is supplied the L1 classifier node will detect it and
+    skip the LLM call entirely.  When ``ae_stage`` is additionally supplied
+    (only relevant for AE/Sales calls) the L2 classifier node is also skipped.
+    Both values flow through the graph unchanged into the expert agents.
+    """
+    transcript_len = len(body.transcript)
+    logger.info(
+        "Recompute request started, transcript_length=%d turns, call_type=%s, ae_stage=%s",
+        transcript_len,
+        body.call_type,
+        body.ae_stage,
+    )
+
+    speaker_labels, domains = parse_user_map(body.metadata["user_map"])
+    formatted_transcript = format_transcript(body.transcript, speaker_labels)
+    duration_mins = get_duration_mins(body.transcript)
+    metadata = {
+        "meeting_title": body.metadata["topic"],
+        "duration_mins": duration_mins,
+        "participant_domains": domains,
+        "internal_domains": body.metadata.get("internal_domains", []),
+    }
+
+    # Seed the initial state with user-provided overrides; the classifier nodes
+    # will detect these and bypass their LLM calls.
+    initial_state = {
+        "transcript": formatted_transcript,
+        "metadata": metadata,
+        "org_config": body.org_config,
+    }
+    if body.call_type is not None:
+        initial_state["call_type"] = body.call_type
+    if body.ae_stage is not None:
+        initial_state["ae_stage"] = body.ae_stage
+
+    try:
+        result = await app.ainvoke(initial_state)
+    except Exception as e:
+        logger.error("Recompute failed: %s", e, exc_info=True)
+        raise HTTPException(
+            status_code=503,
+            detail=f"Recompute failed: {str(e)}",
+        ) from e
+
+    call_type = result.get("call_type", "unknown")
+    logger.info("Recompute completed, call_type=%s", call_type)
     out = {k: v for k, v in result.items() if v is not None}
     return out

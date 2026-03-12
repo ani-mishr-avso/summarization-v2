@@ -4,23 +4,29 @@ from pydantic import BaseModel, Field
 
 
 class SummarizeRequest(BaseModel):
-    transcript: list[dict[str, Any]] = Field(..., description="Transcript with speaker labels and timestamps")
-    metadata: dict[str, Any] = Field(default_factory=dict, description="Optional metadata (e.g. meeting_title, participant_domains, internal_domains)")
-    org_config: dict[str, Any] = Field(default_factory=dict, description="Optional org config (e.g. sales_methodology)")
+    transcript: list[dict[str, Any]] = Field(
+        ..., description="Transcript with speaker labels and timestamps"
+    )
+    metadata: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Optional metadata (e.g. meeting_title, participant_domains, internal_domains)",
+    )
+    org_config: dict[str, Any] = Field(
+        default_factory=dict, description="Optional org config (e.g. sales_methodology)"
+    )
 
 
 class RecomputeRequest(SummarizeRequest):
-    """Same as SummarizeRequest but accepts pre-set classification overrides.
+    """Identical to SummarizeRequest, but allows for manual classification overrides.
 
-    When ``call_type`` is provided the L1 classifier is skipped entirely.
-    When ``ae_stage`` is additionally provided (only meaningful for AE/Sales
-    call types) the L2 classifier is also skipped.
+    If ``call_type`` is specified, the L1 classifier is bypassed.
+    If ``ae_stage`` is also specified (relevant only for AE/Sales calls), the L2 classifier is bypassed as well.
     """
 
     call_type: Optional[str] = Field(
         None,
         description=(
-            "User-corrected L1 classification. "
+            "User-corrected L1 classification."
             "Must be one of: AE/Sales, Internal, CSM/Post-Sale, SDR/Outbound, Unclassified."
         ),
     )

@@ -5,12 +5,14 @@ strategic_llm:
   temperature: 0.1
   reasoning_effort: "high"
   service_tier: "auto"
+  max_tokens: 8192
 
 technical_llm:
   model_name: "openai/gpt-oss-20b"
   temperature: 0.5
   reasoning_effort: "medium"
   service_tier: "auto"
+  max_tokens: 8192
 
 routing:
   confidence_threshold: 0.70

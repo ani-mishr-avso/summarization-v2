@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:56:27.793325",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "Internal/Implementation",
+    "predicted_sub_type": "",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": false,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation centers on a customer (Viki) trying to deploy and configure the vendor's system, discussing server requirements, budget approvals, technical troubleshooting, and next steps for implementation. This aligns with a post\u2011sale/customer\u2011success interaction rather than a new sales pitch, outbound prospecting, or purely internal project work."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: False, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "meeting_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "The extracted fields accurately reflect the transcript, but the phrasing of the trigger is an inferred summary rather than a verbatim statement.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All three required keys (trigger, project_state, requested_by) are present and supported by the conversation.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The content directly addresses why the meeting was called, the project status, and who initiated it, without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the essential information for the segment."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"The extracted fields accurately reflect the transcript, but the phrasing of the trigger is an inferred summary rather than a verbatim statement.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All three required keys (trigger, project_state, requested_by) are present and supported by the conversation.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The content directly addresses why the meeting was called, the project status, and who initiated it, without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the essential information for the segment.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All bullet points are directly supported by statements in the transcript, including server shortage, agreement to send collectors, need for alert thresholds, coordination with Ziv and manager approval, and the inferred moderate risk health signal.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The summary captures the resolved action (sending collectors), the open issues (server provisioning, alert thresholds, coordination), and provides a project health assessment, fulfilling the segment description.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "Every bullet is directly relevant to executive decision\u2011making about the project's status; no extraneous information is included.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the required information in five brief bullets without redundancy or filler."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All bullet points are directly supported by statements in the transcript, including server shortage, agreement to send collectors, need for alert thresholds, coordination with Ziv and manager approval, and the inferred moderate risk health signal.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The summary captures the resolved action (sending collectors), the open issues (server provisioning, alert thresholds, coordination), and provides a project health assessment, fulfilling the segment description.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"Every bullet is directly relevant to executive decision\u2011making about the project's status; no extraneous information is included.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the required information in five brief bullets without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "key_decisions",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The extracted decisions contain unsupported details: the owner for the server\u2011provisioning decision is named \"Ziv\" instead of the transcript's \"Zev\", and the rationales are not explicitly stated in the conversation.",
+          "hallucination": "Incorrect name \"Ziv\" for the person to coordinate with; inferred rationales not directly mentioned"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "Key decisions discussed in the transcript, such as scheduling a meeting with Zev before year\u2011end and obtaining managerial approval for sending collectors, are omitted.",
+          "omission": "Missing decision to schedule a meeting with Zev before year\u2011end and to get manager approval for collector deployment"
+        },
+        "BusinessRelevance": {
+          "score": 4,
+          "reason": "The extracted decisions are largely pertinent to the technical process, though the unsupported rationales add slight noise.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response presents the decisions in a brief, structured format without unnecessary filler."
+        }
+      },
+      "weighted_score": 3.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The extracted decisions contain unsupported details: the owner for the server\u2011provisioning decision is named \\\"Ziv\\\" instead of the transcript's \\\"Zev\\\", and the rationales are not explicitly stated in the conversation.\",\n      \"hallucination\": \"Incorrect name \\\"Ziv\\\" for the person to coordinate with; inferred rationales not directly mentioned\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"Key decisions discussed in the transcript, such as scheduling a meeting with Zev before year\u2011end and obtaining managerial approval for sending collectors, are omitted.\",\n      \"omission\": \"Missing decision to schedule a meeting with Zev before year\u2011end and to get manager approval for collector deployment\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 4,\n      \"reason\": \"The extracted decisions are largely pertinent to the technical process, though the unsupported rationales add slight noise.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response presents the decisions in a brief, structured format without unnecessary filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "blockers_risks",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed issues, impacts, and escalation flags are directly supported by statements in the transcript or reasonable inferences from the dialogue.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The extraction captures several key blockers but omits other significant issues mentioned, such as the lack of alerting capability and the system\u2019s inability to recognize internal devices, which are also blockers/risk factors.",
+          "omission": "Missing issue about lack of alerting/visibility for data leakage and inability of the system to detect internal devices."
+        },
+        "BusinessRelevance": {
+          "score": 5,
+          "reason": "All provided entries are directly relevant to blockers and risks, with no extraneous or unrelated information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response presents three concise issue objects without filler, repetition, or tangential content."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed issues, impacts, and escalation flags are directly supported by statements in the transcript or reasonable inferences from the dialogue.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The extraction captures several key blockers but omits other significant issues mentioned, such as the lack of alerting capability and the system\u2019s inability to recognize internal devices, which are also blockers/risk factors.\",\n      \"omission\": \"Missing issue about lack of alerting/visibility for data leakage and inability of the system to detect internal devices.\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 5,\n      \"reason\": \"All provided entries are directly relevant to blockers and risks, with no extraneous or unrelated information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response presents three concise issue objects without filler, repetition, or tangential content.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "technical_discussion",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "Most statements are grounded in the transcript, but the claim that collectors will send traffic metadata to a central platform is not explicitly mentioned.",
+          "hallucination": "Collectors will be configured to send traffic metadata to central platform"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All required fields (topics_covered, logic_configurations, debugging_notes) are present and capture the technical details discussed in the segment.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content stays focused on architecture, configuration, and debugging details relevant to the technical discussion.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response conveys the necessary technical information without filler or redundant details."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"Most statements are grounded in the transcript, but the claim that collectors will send traffic metadata to a central platform is not explicitly mentioned.\",\n      \"hallucination\": \"Collectors will be configured to send traffic metadata to central platform\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All required fields (topics_covered, logic_configurations, debugging_notes) are present and capture the technical details discussed in the segment.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content stays focused on architecture, configuration, and debugging details relevant to the technical discussion.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response conveys the necessary technical information without filler or redundant details.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_items",
+      "metrics": {
+        "precision": {
+          "score": 1.0,
+          "reason": "Correct: 0/5 items. The transcript contains three explicit action items: Sunny sending 2\u20113 collectors tomorrow morning, Sunny updating Viki in an hour, and Viki meeting with Ziv before end of year. The extracted content lists five items, but only the first aligns with an actual action (sending collectors). Its timeline is inaccurate, so it is not counted as correct. No other predicted items correspond to the real commitments, resulting in 0 correct items and 1 captured item. Timeline and owner attribution scores are low because predicted timelines and owners do not match the transcript."
+        },
+        "recall": {
+          "score": 2.33,
+          "reason": "Captured: 1/3 items. The transcript contains three explicit action items: Sunny sending 2\u20113 collectors tomorrow morning, Sunny updating Viki in an hour, and Viki meeting with Ziv before end of year. The extracted content lists five items, but only the first aligns with an actual action (sending collectors). Its timeline is inaccurate, so it is not counted as correct. No other predicted items correspond to the real commitments, resulting in 0 correct items and 1 captured item. Timeline and owner attribution scores are low because predicted timelines and owners do not match the transcript."
+        },
+        "timeline_accuracy": {
+          "score": 1,
+          "reason": "None of the predicted timelines matched the actual timelines (tomorrow morning, in an hour, before end of year)."
+        },
+        "owner_attribution": {
+          "score": 1,
+          "reason": "Only one predicted item correctly assigned the owner (Sunny for sending collectors); the other items had incorrect or fabricated owners."
+        }
+      },
+      "weighted_score": 1.33,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    },
+    {
+      "segment_name": "timeline_dependencies",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "Several listed items are not mentioned in the transcript, such as a deadline for server provisioning, a specific manager\u2011approval deadline, and the overall milestone status.",
+          "hallucination": "Servers provisioned by next week; Manager approval by end of week; Milestone status \"On track with moderate risk\""
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The extraction misses the explicit upcoming milestone of meeting with Ziv before the end of the year and includes unsupported items.",
+          "omission": "Meeting with Ziv before end of year (deadline/milestone mentioned in the transcript)"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "Contains unsupported and irrelevant entries (e.g., server provisioning timeline and generic risk status) that do not aid decision\u2011making for this segment.",
+          "irrelevant_information": "Servers provisioned by next week; Milestone status \"On track with moderate risk\""
+        },
+        "Conciseness": {
+          "score": 4,
+          "reason": "The response is brief and well\u2011structured, but includes unnecessary fabricated items that could be omitted."
+        }
+      },
+      "weighted_score": 2.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"Several listed items are not mentioned in the transcript, such as a deadline for server provisioning, a specific manager\u2011approval deadline, and the overall milestone status.\",\n      \"hallucination\": \"Servers provisioned by next week; Manager approval by end of week; Milestone status \\\"On track with moderate risk\\\"\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The extraction misses the explicit upcoming milestone of meeting with Ziv before the end of the year and includes unsupported items.\",\n      \"omission\": \"Meeting with Ziv before end of year (deadline/milestone mentioned in the transcript)\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"Contains unsupported and irrelevant entries (e.g., server provisioning timeline and generic risk status) that do not aid decision\u2011making for this segment.\",\n      \"irrelevant_information\": \"Servers provisioned by next week; Milestone status \\\"On track with moderate risk\\\"\"\n    },\n    \"Conciseness\": {\n      \"score\": 4,\n      \"reason\": \"The response is brief and well\u2011structured, but includes unnecessary fabricated items that could be omitted.\"\n    }\n  }\n}"
+    }
+  ],
+  "overall_score": 3.7257142857142855
+}

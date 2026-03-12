@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:57:56.208026",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "Internal/Implementation",
+    "predicted_sub_type": "",
+    "llm_predicted_call_type": "Internal/Implementation",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "Internal/Implementation",
+      "confidence": 4,
+      "reasoning": "The conversation is between two internal team members discussing product evaluation, procurement, budgeting, demo scheduling, and hiring for internal projects. There is no external prospect or customer involved, and the focus is on planning and implementing a solution within the organization, which aligns with an internal/implementation call."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "meeting_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "The trigger and project_state are reasonably inferred from the transcript, but the requested_by field ('Arun Vohra') is not explicitly stated in the conversation.",
+          "hallucination": "requested_by value 'Arun Vohra' is not supported by the transcript"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All three required fields (trigger, project_state, requested_by) are provided; no required information present in the transcript is omitted.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content directly addresses why the meeting was called, the current project state, and who requested it, without unnecessary details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the essential information for the segment."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"The trigger and project_state are reasonably inferred from the transcript, but the requested_by field ('Arun Vohra') is not explicitly stated in the conversation.\",\n      \"hallucination\": \"requested_by value 'Arun Vohra' is not supported by the transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All three required fields (trigger, project_state, requested_by) are provided; no required information present in the transcript is omitted.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content directly addresses why the meeting was called, the current project state, and who requested it, without unnecessary details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the essential information for the segment.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most statements are grounded in the transcript, but the claim that the team \"decided to prioritize TMOS over Zoom\" is not explicitly stated and is inferred.",
+          "hallucination": "Claim that the team decided to prioritize TMOS over Zoom"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The summary captures several key decisions and open items, but it omits an explicit project health signal and does not clearly separate what has been resolved versus what remains open.",
+          "omission": "Missing explicit project health signal (e.g., green/yellow status) and clear distinction of resolved vs. open items"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "All included points are directly relevant to executive decision\u2011making and the current state of the project.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 4,
+          "reason": "The response is concise and focused, with only minor verbosity; it delivers the needed information efficiently."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most statements are grounded in the transcript, but the claim that the team \\\"decided to prioritize TMOS over Zoom\\\" is not explicitly stated and is inferred.\",\n      \"hallucination\": \"Claim that the team decided to prioritize TMOS over Zoom\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The summary captures several key decisions and open items, but it omits an explicit project health signal and does not clearly separate what has been resolved versus what remains open.\",\n      \"omission\": \"Missing explicit project health signal (e.g., green/yellow status) and clear distinction of resolved vs. open items\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"All included points are directly relevant to executive decision\u2011making and the current state of the project.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 4,\n      \"reason\": \"The response is concise and focused, with only minor verbosity; it delivers the needed information efficiently.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "key_decisions",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "Several extracted decisions (selecting TMOS over Zoom, a 10\u2011minute demo, and procurement seat negotiation) are not explicitly stated in the transcript, constituting hallucinations.",
+          "hallucination": "Select TMOS as the primary meeting solution over Zoom; Proceed with a 10\u2011minute demo on Thursday and decide by the 10th; Engage procurement team to negotiate seat pricing"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The extraction captures the hiring decision but omits other possible decisions such as assigning Sunny to run the project after setup.",
+          "omission": "Decision to have Sunny run the project once it is up and running"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "The list includes decisions not supported by the transcript, adding noise and reducing usefulness for decision tracking.",
+          "irrelevant_information": "Select TMOS as the primary meeting solution over Zoom; Proceed with a 10\u2011minute demo on Thursday and decide by the 10th; Engage procurement team to negotiate seat pricing"
+        },
+        "Conciseness": {
+          "score": 4,
+          "reason": "The response is brief and well\u2011structured, though it contains some unnecessary decision entries."
+        }
+      },
+      "weighted_score": 2.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"Several extracted decisions (selecting TMOS over Zoom, a 10\u2011minute demo, and procurement seat negotiation) are not explicitly stated in the transcript, constituting hallucinations.\",\n      \"hallucination\": \"Select TMOS as the primary meeting solution over Zoom; Proceed with a 10\u2011minute demo on Thursday and decide by the 10th; Engage procurement team to negotiate seat pricing\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The extraction captures the hiring decision but omits other possible decisions such as assigning Sunny to run the project after setup.\",\n      \"omission\": \"Decision to have Sunny run the project once it is up and running\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"The list includes decisions not supported by the transcript, adding noise and reducing usefulness for decision tracking.\",\n      \"irrelevant_information\": \"Select TMOS as the primary meeting solution over Zoom; Proceed with a 10\u2011minute demo on Thursday and decide by the 10th; Engage procurement team to negotiate seat pricing\"\n    },\n    \"Conciseness\": {\n      \"score\": 4,\n      \"reason\": \"The response is brief and well\u2011structured, though it contains some unnecessary decision entries.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "blockers_risks",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "All listed issues are mentioned in the transcript, but the claim that escalation is needed for the security approval is not explicitly stated.",
+          "hallucination": "escalation_needed set to true for the security approval issue"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Main blockers are captured, yet the transcript also highlights a resource constraint (Arun needing to hire additional staff) which is omitted.",
+          "omission": "Missing issue regarding resource constraints/hiring needs mentioned by Arun"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "All extracted items directly address blockers or risks to progress with no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is succinct, presenting each blocker in a compact, structured format without filler."
+        }
+      },
+      "weighted_score": 4.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"All listed issues are mentioned in the transcript, but the claim that escalation is needed for the security approval is not explicitly stated.\",\n      \"hallucination\": \"escalation_needed set to true for the security approval issue\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Main blockers are captured, yet the transcript also highlights a resource constraint (Arun needing to hire additional staff) which is omitted.\",\n      \"omission\": \"Missing issue regarding resource constraints/hiring needs mentioned by Arun\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"All extracted items directly address blockers or risks to progress with no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is succinct, presenting each blocker in a compact, structured format without filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "technical_discussion",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed topics are mentioned in the transcript and no unsupported claims are made.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The transcript contains no architecture, schema, integration, or debugging details, so the extraction correctly leaves those fields empty and includes all present relevant content.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "The extracted topics focus on licensing, POV, and product comparison, which are not the technical specifics required for this segment.",
+          "irrelevant_information": "Zoom vs TMOS comparison, Seat licensing and cost, Proof of Value (POV) initiation, Customer Success (CS) module, Live session testing, Security approval process"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the necessary fields without filler or redundancy."
+        }
+      },
+      "weighted_score": 4.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed topics are mentioned in the transcript and no unsupported claims are made.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The transcript contains no architecture, schema, integration, or debugging details, so the extraction correctly leaves those fields empty and includes all present relevant content.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"The extracted topics focus on licensing, POV, and product comparison, which are not the technical specifics required for this segment.\",\n      \"irrelevant_information\": \"Zoom vs TMOS comparison, Seat licensing and cost, Proof of Value (POV) initiation, Customer Success (CS) module, Live session testing, Security approval process\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the necessary fields without filler or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_items",
+      "metrics": {
+        "precision": {
+          "score": 1.8,
+          "reason": "Correct: 1/5 items. The transcript contains two concrete commitments with timelines: Sunny offering to attend the Thursday demo and Arun committing to speak with Jason on Friday. The extracted content lists five items, but only Arun's Friday call aligns with the transcript in both action, owner, and timeline. The other four items either describe actions not mentioned (e.g., securing licenses, hiring) or misstate the nature/timeline of Sunny's demo. Hence, total_actual_items=2, total_predicted_items=5, correct_items=1, captured_items=1. Timeline and owner scores are low due to multiple incorrect or fabricated entries."
+        },
+        "recall": {
+          "score": 3.0,
+          "reason": "Captured: 1/2 items. The transcript contains two concrete commitments with timelines: Sunny offering to attend the Thursday demo and Arun committing to speak with Jason on Friday. The extracted content lists five items, but only Arun's Friday call aligns with the transcript in both action, owner, and timeline. The other four items either describe actions not mentioned (e.g., securing licenses, hiring) or misstate the nature/timeline of Sunny's demo. Hence, total_actual_items=2, total_predicted_items=5, correct_items=1, captured_items=1. Timeline and owner scores are low due to multiple incorrect or fabricated entries."
+        },
+        "timeline_accuracy": {
+          "score": 2,
+          "reason": "Only the Friday call by Arun matches the transcript timeline; all other predicted timelines are fabricated or incorrect."
+        },
+        "owner_attribution": {
+          "score": 2,
+          "reason": "Arun is correctly attributed for the Friday call, but all other predicted owners are either wrong or refer to actions not present in the transcript."
+        }
+      },
+      "weighted_score": 2.2,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    },
+    {
+      "segment_name": "timeline_dependencies",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed deadlines, dependencies, and status are directly supported by statements in the transcript.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The extraction includes all relevant deadlines, external dependencies, and a concise milestone status present in the transcript.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The content is strictly about upcoming deadlines, milestones, and dependencies, with no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response provides the necessary information in a brief list and short status without redundancy."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed deadlines, dependencies, and status are directly supported by statements in the transcript.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The extraction includes all relevant deadlines, external dependencies, and a concise milestone status present in the transcript.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The content is strictly about upcoming deadlines, milestones, and dependencies, with no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response provides the necessary information in a brief list and short status without redundancy.\"\n    }\n  }\n}"
+    }
+  ],
+  "overall_score": 3.814285714285714
+}

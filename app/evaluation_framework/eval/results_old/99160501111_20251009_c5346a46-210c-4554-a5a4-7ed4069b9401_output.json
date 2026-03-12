@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:52:56.379503",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "Internal/Implementation",
+    "predicted_sub_type": "",
+    "llm_predicted_call_type": "Internal/Implementation",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "Internal/Implementation",
+      "confidence": 4,
+      "reasoning": "The conversation focuses on detailed technical tasks\u2014deployment scheduling, integration configuration, network device inventory, firewall handling, data source queries, and troubleshooting. Participants discuss internal processes and next steps rather than selling, prospecting, or post\u2011sale relationship management, indicating an internal implementation/technical coordination call."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "meeting_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Trigger and project_state are supported, but the requested_by value (Yossi Nardea) is not explicitly stated in the transcript.",
+          "hallucination": "requested_by: \"Yossi Nardea\" is not verifiable in the transcript"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All three required fields (trigger, project_state, requested_by) are present; no required information present in the transcript is omitted.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content directly addresses why the meeting was called, the project state, and who requested it without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the necessary information for the segment."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Trigger and project_state are supported, but the requested_by value (Yossi Nardea) is not explicitly stated in the transcript.\",\n      \"hallucination\": \"requested_by: \\\"Yossi Nardea\\\" is not verifiable in the transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All three required fields (trigger, project_state, requested_by) are present; no required information present in the transcript is omitted.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content directly addresses why the meeting was called, the project state, and who requested it without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the necessary information for the segment.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "Several statements are not directly supported by the transcript, such as manual handling via Panorama and a health signal about data mapping.",
+          "hallucination": "Claims that firewall and collector configurations will be handled manually via Panorama and that project health is on track but needs data mapping clarification are not stated in the transcript."
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The summary captures the main resolved items and open issues, but omits some explicit next steps discussed, like defining site hierarchy for Korea.",
+          "omission": "No mention of the need to create and configure the Korea site hierarchy and related integration steps."
+        },
+        "BusinessRelevance": {
+          "score": 4,
+          "reason": "The bullets are focused on executive\u2011level outcomes and open items, with only minor irrelevant inference.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers concise executive bullets without filler or redundant information."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"Several statements are not directly supported by the transcript, such as manual handling via Panorama and a health signal about data mapping.\",\n      \"hallucination\": \"Claims that firewall and collector configurations will be handled manually via Panorama and that project health is on track but needs data mapping clarification are not stated in the transcript.\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The summary captures the main resolved items and open issues, but omits some explicit next steps discussed, like defining site hierarchy for Korea.\",\n      \"omission\": \"No mention of the need to create and configure the Korea site hierarchy and related integration steps.\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 4,\n      \"reason\": \"The bullets are focused on executive\u2011level outcomes and open items, with only minor irrelevant inference.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers concise executive bullets without filler or redundant information.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "key_decisions",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "Two of the three extracted decisions are not directly stated in the transcript; the collector deployment scope and the manual Panorama config link are inferred or fabricated.",
+          "hallucination": "Decision to deploy collector to all German branches to avoid limits; decision to configure firewall integration manually via Panorama with a provided config link"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The extraction captures only a few decisions while the transcript contains many additional technical/process decisions (e.g., integration order, SNMP vs SSH choice, site creation, handling of ports, etc.).",
+          "omission": "Missing decisions such as integration sequencing (DHCP, MPR, firewall), use of SNMP instead of SSH, creation of sites and subnets, handling of duplicate devices, and other configuration choices discussed"
+        },
+        "BusinessRelevance": {
+          "score": 3,
+          "reason": "The provided decisions are relevant to technical choices, but the set is incomplete and omits several key decisions, reducing overall usefulness.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted content is brief and contains only the decision entries without any filler or extraneous detail."
+        }
+      },
+      "weighted_score": 3.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"Two of the three extracted decisions are not directly stated in the transcript; the collector deployment scope and the manual Panorama config link are inferred or fabricated.\",\n      \"hallucination\": \"Decision to deploy collector to all German branches to avoid limits; decision to configure firewall integration manually via Panorama with a provided config link\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The extraction captures only a few decisions while the transcript contains many additional technical/process decisions (e.g., integration order, SNMP vs SSH choice, site creation, handling of ports, etc.).\",\n      \"omission\": \"Missing decisions such as integration sequencing (DHCP, MPR, firewall), use of SNMP instead of SSH, creation of sites and subnets, handling of duplicate devices, and other configuration choices discussed\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 3,\n      \"reason\": \"The provided decisions are relevant to technical choices, but the set is incomplete and omits several key decisions, reducing overall usefulness.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is brief and contains only the decision entries without any filler or extraneous detail.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "blockers_risks",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "Both issues are supported by the transcript, though the second is an inferred phrasing of the discussed firewall\u2011log mapping concerns.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Key blockers are captured, but the transcript also mentions a missing deployment date for the Germany collector, which is a timeline risk not included.",
+          "omission": "Missing blocker: lack of scheduled date for the Germany collector deployment (timeline risk)."
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted issues directly address progress\u2011blocking problems and their impacts, with no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response presents each issue succinctly without unnecessary detail or repetition."
+        }
+      },
+      "weighted_score": 4.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"Both issues are supported by the transcript, though the second is an inferred phrasing of the discussed firewall\u2011log mapping concerns.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Key blockers are captured, but the transcript also mentions a missing deployment date for the Germany collector, which is a timeline risk not included.\",\n      \"omission\": \"Missing blocker: lack of scheduled date for the Germany collector deployment (timeline risk).\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted issues directly address progress\u2011blocking problems and their impacts, with no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response presents each issue succinctly without unnecessary detail or repetition.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "technical_discussion",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most items are mentioned in the transcript, but some statements (e.g., \"manual loading of firewall config\" and \"collector endpoints for all branches\") are not explicitly stated and appear inferred.",
+          "hallucination": "Claim of manual loading of firewall config into Panorama and collector endpoints for all branches are not directly supported."
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Key technical points are captured, yet several discussed details such as SNMP vs SSH recommendation, integration order, query filtering, and handling of duplicate devices are omitted.",
+          "omission": "Missing details on SNMP/SSH recommendation, integration sequencing, query usage for filtering, and duplicate device handling."
+        },
+        "BusinessRelevance": {
+          "score": 4,
+          "reason": "The extracted content stays focused on technical architecture and debugging, with only minor extraneous or over\u2011generalized statements.",
+          "irrelevant_information": "Statement about \"collector endpoints for all branches\" extends beyond what was discussed."
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the required information succinctly without filler or redundancy."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most items are mentioned in the transcript, but some statements (e.g., \\\"manual loading of firewall config\\\" and \\\"collector endpoints for all branches\\\") are not explicitly stated and appear inferred.\",\n      \"hallucination\": \"Claim of manual loading of firewall config into Panorama and collector endpoints for all branches are not directly supported.\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Key technical points are captured, yet several discussed details such as SNMP vs SSH recommendation, integration order, query filtering, and handling of duplicate devices are omitted.\",\n      \"omission\": \"Missing details on SNMP/SSH recommendation, integration sequencing, query usage for filtering, and duplicate device handling.\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 4,\n      \"reason\": \"The extracted content stays focused on technical architecture and debugging, with only minor extraneous or over\u2011generalized statements.\",\n      \"irrelevant_information\": \"Statement about \\\"collector endpoints for all branches\\\" extends beyond what was discussed.\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the required information succinctly without filler or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_items",
+      "metrics": {
+        "precision": {
+          "score": 1.0,
+          "reason": "Correct: 0/5 items. Identified five distinct commitments in the transcript: scheduling a 15\u202fNov call, Sunny sending a Panorama link, Sunny checking a release date, Yossi sending a summary query, and Yossi creating a Korea site. The extracted content listed five items, but only two actions (Panorama link and Korea site) match the transcript actions, albeit with invented timelines. Consequently, total_actual_items=5, total_predicted_items=5, correct_items=0 (timelines or owners mismatched), captured_items=2 (actions captured). Timeline accuracy is 0 because the sole transcript timeline was missed. Owner attribution is scored 2 out of 5 based on two correct owner assignments."
+        },
+        "recall": {
+          "score": 2.6,
+          "reason": "Captured: 2/5 items. Identified five distinct commitments in the transcript: scheduling a 15\u202fNov call, Sunny sending a Panorama link, Sunny checking a release date, Yossi sending a summary query, and Yossi creating a Korea site. The extracted content listed five items, but only two actions (Panorama link and Korea site) match the transcript actions, albeit with invented timelines. Consequently, total_actual_items=5, total_predicted_items=5, correct_items=0 (timelines or owners mismatched), captured_items=2 (actions captured). Timeline accuracy is 0 because the sole transcript timeline was missed. Owner attribution is scored 2 out of 5 based on two correct owner assignments."
+        },
+        "timeline_accuracy": {
+          "score": 0,
+          "reason": "The transcript contains one explicit timeline (the call scheduled for 15 November). No predicted item captures this timeline, and all predicted timelines are fabricated, resulting in no correct timeline matches."
+        },
+        "owner_attribution": {
+          "score": 2,
+          "reason": "Two of the five actual action items have correct owners captured (Sunny for sending the Panorama link and Yossi for creating the Korea site). The remaining items either lack a captured owner or have incorrect/ fabricated owners, leading to a partial score."
+        }
+      },
+      "weighted_score": 1.4,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    },
+    {
+      "segment_name": "timeline_dependencies",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The extracted list contains several dates (17\u202fNov, 18\u202fNov, 20\u202fNov, 22\u202fNov) and a milestone status that are not mentioned anywhere in the transcript.",
+          "hallucination": "Dates 17 November, 18 November, 20 November, 22 November and the milestone_status \"On track with some ownership gaps identified\" are not supported by the transcript."
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All required fields (deadlines, external_dependencies, milestone_status) are present, and the transcript's only explicit deadline (15\u202fNov) and dependency (Germany collector) are captured.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 3,
+          "reason": "Core information (15\u202fNov deadline, Germany collector) is included, but the added fabricated dates and status dilute relevance.",
+          "irrelevant_information": "Fabricated deadlines (17\u202fNov, 18\u202fNov, 20\u202fNov, 22\u202fNov) and invented milestone status."
+        },
+        "Conciseness": {
+          "score": 3,
+          "reason": "The response conveys the needed items but includes unnecessary and inaccurate entries, reducing informational density."
+        }
+      },
+      "weighted_score": 3.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The extracted list contains several dates (17\u202fNov, 18\u202fNov, 20\u202fNov, 22\u202fNov) and a milestone status that are not mentioned anywhere in the transcript.\",\n      \"hallucination\": \"Dates 17 November, 18 November, 20 November, 22 November and the milestone_status \\\"On track with some ownership gaps identified\\\" are not supported by the transcript.\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All required fields (deadlines, external_dependencies, milestone_status) are present, and the transcript's only explicit deadline (15\u202fNov) and dependency (Germany collector) are captured.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 3,\n      \"reason\": \"Core information (15\u202fNov deadline, Germany collector) is included, but the added fabricated dates and status dilute relevance.\",\n      \"irrelevant_information\": \"Fabricated deadlines (17\u202fNov, 18\u202fNov, 20\u202fNov, 22\u202fNov) and invented milestone status.\"\n    },\n    \"Conciseness\": {\n      \"score\": 3,\n      \"reason\": \"The response conveys the needed items but includes unnecessary and inaccurate entries, reducing informational density.\"\n    }\n  }\n}"
+    }
+  ],
+  "overall_score": 3.414285714285714
+}

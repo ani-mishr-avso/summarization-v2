@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:47:36.171800",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "CSM/Post-Sale",
+    "predicted_sub_type": "General Health Check",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation focuses on configuring product features (alerts, inventory, cloud integration), reviewing work already done, planning next steps, and addressing technical usage questions. Participants include a vendor representative and customer stakeholders, indicating a post\u2011sale/customer\u2011success engagement rather than a new sales pitch or internal project planning."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "relationship_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "Most statements are grounded, but the phrase \"General health check\" is not explicitly stated in the transcript and is inferred.",
+          "hallucination": "General health check"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "All required fields are present, but the recap of the last interaction is only partially supported and omits some specific details mentioned earlier.",
+          "omission": "Detailed specifics of the previous call beyond inventory cleanup and alert configuration"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content is directly relevant to the relationship context and contains no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the necessary information for the segment."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"Most statements are grounded, but the phrase \\\"General health check\\\" is not explicitly stated in the transcript and is inferred.\",\n      \"hallucination\": \"General health check\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"All required fields are present, but the recap of the last interaction is only partially supported and omits some specific details mentioned earlier.\",\n      \"omission\": \"Detailed specifics of the previous call beyond inventory cleanup and alert configuration\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is directly relevant to the relationship context and contains no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the necessary information for the segment.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most statements reflect topics discussed, but claims about the account being in good overall health and a renewal scheduled for next year are not mentioned in the transcript.",
+          "hallucination": "Account is in good overall health; Renewal is scheduled for next year"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The summary captures the main health status, key technical concerns, and relationship actions, covering the required executive bullet points.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "Content stays focused on health, concerns, and trajectory; however the fabricated renewal detail adds irrelevant information.",
+          "irrelevant_information": "Renewal is scheduled for next year; no churn risk"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The five bullets are succinct and convey the essential information without redundancy."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most statements reflect topics discussed, but claims about the account being in good overall health and a renewal scheduled for next year are not mentioned in the transcript.\",\n      \"hallucination\": \"Account is in good overall health; Renewal is scheduled for next year\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The summary captures the main health status, key technical concerns, and relationship actions, covering the required executive bullet points.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"Content stays focused on health, concerns, and trajectory; however the fabricated renewal detail adds irrelevant information.\",\n      \"irrelevant_information\": \"Renewal is scheduled for next year; no churn risk\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The five bullets are succinct and convey the essential information without redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "health_and_adoption",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed features and the satisfaction sentiment are directly supported by statements in the transcript; the adoption status is a reasonable inference from the discussion of partial progress.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The output includes every required field (adoption_status, features_mentioned, satisfaction_signals) and captures all relevant information present in the transcript for this segment.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The content is tightly focused on utilization, feature adoption, and satisfaction signals, with no extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the necessary information succinctly without filler or redundant wording."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed features and the satisfaction sentiment are directly supported by statements in the transcript; the adoption status is a reasonable inference from the discussion of partial progress.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The output includes every required field (adoption_status, features_mentioned, satisfaction_signals) and captures all relevant information present in the transcript for this segment.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The content is tightly focused on utilization, feature adoption, and satisfaction signals, with no extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the necessary information succinctly without filler or redundant wording.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "issues_escalations",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The transcript does not contain explicit ticket IDs like T-12345/T-12346 nor a clear statement about an \"integration token renewal failure for Miraki\"; these details are fabricated.",
+          "hallucination": "Ticket IDs T-12345 and T-12346 and the specific issue descriptions are not present in the transcript."
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The segment mentions many active issues (integration problems, alert inconsistencies, authentication failures, user frustration) that are not captured; only two fabricated tickets are listed.",
+          "omission": "Missing numerous support tickets/bugs discussed in the transcript and any mention of customer frustration levels."
+        },
+        "BusinessRelevance": {
+          "score": 2,
+          "reason": "While the format is correct, the content is largely invented and omits key real issues, making it of limited decision\u2011useful value.",
+          "irrelevant_information": "Fabricated ticket IDs and issue details that do not exist in the transcript."
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted list is brief and contains only the required fields without extra filler."
+        }
+      },
+      "weighted_score": 2.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The transcript does not contain explicit ticket IDs like T-12345/T-12346 nor a clear statement about an \\\"integration token renewal failure for Miraki\\\"; these details are fabricated.\",\n      \"hallucination\": \"Ticket IDs T-12345 and T-12346 and the specific issue descriptions are not present in the transcript.\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The segment mentions many active issues (integration problems, alert inconsistencies, authentication failures, user frustration) that are not captured; only two fabricated tickets are listed.\",\n      \"omission\": \"Missing numerous support tickets/bugs discussed in the transcript and any mention of customer frustration levels.\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 2,\n      \"reason\": \"While the format is correct, the content is largely invented and omits key real issues, making it of limited decision\u2011useful value.\",\n      \"irrelevant_information\": \"Fabricated ticket IDs and issue details that do not exist in the transcript.\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted list is brief and contains only the required fields without extra filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "expansion_signals",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "The three listed use cases are supported by the transcript, but the budget_availability value 'Uncertain' is not mentioned in the transcript.",
+          "hallucination": "budget_availability set to 'Uncertain' without transcript evidence"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "All major new use cases are captured except the vulnerability management use case that was also discussed as a desired new capability.",
+          "omission": "Missing 'vulnerability management' use case mentioned in the transcript"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted fields directly address interest in new modules/use cases, seat growth, and budget, with no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the required structured information without filler."
+        }
+      },
+      "weighted_score": 4.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"The three listed use cases are supported by the transcript, but the budget_availability value 'Uncertain' is not mentioned in the transcript.\",\n      \"hallucination\": \"budget_availability set to 'Uncertain' without transcript evidence\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"All major new use cases are captured except the vulnerability management use case that was also discussed as a desired new capability.\",\n      \"omission\": \"Missing 'vulnerability management' use case mentioned in the transcript\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted fields directly address interest in new modules/use cases, seat growth, and budget, with no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the required structured information without filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "renewal_risk",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The renewal_date \"2026-03-01\" is not mentioned in the transcript and the risk factor \"Potential competitor offerings\" is not supported; these are fabricated claims.",
+          "hallucination": "renewal_date \"2026-03-01\" and risk factor \"Potential competitor offerings\""
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The extraction includes some relevant risk factors (integration reliability) but omits other discussed issues such as alert false\u2011positives, missing notifications, and feature gaps; no renewal date exists in the transcript to capture.",
+          "omission": "Missing risk factors like alert reliability issues, missing notification features, and other integration problems discussed"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "While core risk factors are present, the inclusion of a fabricated renewal date and an unsupported competitive mention makes the output less useful for decision\u2011making.",
+          "irrelevant_information": "Fabricated renewal_date and unsupported competitive risk factor"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the required fields without any filler or redundant information."
+        }
+      },
+      "weighted_score": 3.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The renewal_date \\\"2026-03-01\\\" is not mentioned in the transcript and the risk factor \\\"Potential competitor offerings\\\" is not supported; these are fabricated claims.\",\n      \"hallucination\": \"renewal_date \\\"2026-03-01\\\" and risk factor \\\"Potential competitor offerings\\\"\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The extraction includes some relevant risk factors (integration reliability) but omits other discussed issues such as alert false\u2011positives, missing notifications, and feature gaps; no renewal date exists in the transcript to capture.\",\n      \"omission\": \"Missing risk factors like alert reliability issues, missing notification features, and other integration problems discussed\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"While core risk factors are present, the inclusion of a fabricated renewal date and an unsupported competitive mention makes the output less useful for decision\u2011making.\",\n      \"irrelevant_information\": \"Fabricated renewal_date and unsupported competitive risk factor\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the required fields without any filler or redundant information.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_plan",
+      "metrics": {
+        "precision": {
+          "score": 1.0,
+          "reason": "Correct: 0/3 items. Identified three concrete action items in the transcript: (1) Tedy to check integrations, (2) Sunny to document and email integration status, (3) Sunny to schedule a follow\u2011up meeting in three weeks. The extracted content lists three items, but none match the transcript items in substance, owner, or timeline, yielding zero correct and captured items. Timeline and owner scores are low due to mismatches."
+        },
+        "recall": {
+          "score": 1.0,
+          "reason": "Captured: 0/3 items. Identified three concrete action items in the transcript: (1) Tedy to check integrations, (2) Sunny to document and email integration status, (3) Sunny to schedule a follow\u2011up meeting in three weeks. The extracted content lists three items, but none match the transcript items in substance, owner, or timeline, yielding zero correct and captured items. Timeline and owner scores are low due to mismatches."
+        },
+        "timeline_accuracy": {
+          "score": 1,
+          "reason": "The transcript contains one timeline (meeting in three weeks). None of the predicted items include this timeline; all predicted deadlines are specific dates that do not match the \"three weeks\" reference, so timeline accuracy is poor."
+        },
+        "owner_attribution": {
+          "score": 1,
+          "reason": "Actual owners are Tedy (integration check) and Sunny (document/email and schedule meeting). Predicted owners are Chen, Tedy, and Sunny, but the actions assigned to them do not correspond to the actual actions, resulting in incorrect owner attribution."
+        }
+      },
+      "weighted_score": 1.0,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    }
+  ],
+  "overall_score": 3.5
+}

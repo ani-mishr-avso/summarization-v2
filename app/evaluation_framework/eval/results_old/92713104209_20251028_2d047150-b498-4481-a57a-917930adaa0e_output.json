@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:48:18.872379",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "CSM/Post-Sale",
+    "predicted_sub_type": "General Health Check",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation focuses on troubleshooting technical issues (duplicate devices, report configuration, Wi\u2011Fi data) and planning next steps for a pilot/customer deployment. Participants discuss data sources, merging devices, and follow\u2011up actions, which are typical of a post\u2011sale/customer\u2011success support call rather than a sales or internal implementation meeting."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "relationship_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "The recap of Wi\u2011Fi reporting issues, duplicate device names, and unmanaged devices matches the transcript, but the call_reason \"General Health Check\" is not mentioned and appears fabricated.",
+          "hallucination": "\"General Health Check\" as the call reason is unsupported by the transcript"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The required fields are account_name, call_reason, and last_interaction_recap; account_name is missing entirely, and the provided call_reason is inaccurate.",
+          "omission": "Missing account_name; inaccurate call_reason"
+        },
+        "Business Relevance": {
+          "score": 3,
+          "reason": "The content captures the main technical issues discussed, but the incorrect call reason adds irrelevant information and reduces usefulness.",
+          "irrelevant_information": "Incorrect call_reason \"General Health Check\""
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted content is brief and directly addresses the required fields without unnecessary filler."
+        }
+      },
+      "weighted_score": 3.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"The recap of Wi\u2011Fi reporting issues, duplicate device names, and unmanaged devices matches the transcript, but the call_reason \\\"General Health Check\\\" is not mentioned and appears fabricated.\",\n      \"hallucination\": \"\\\"General Health Check\\\" as the call reason is unsupported by the transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The required fields are account_name, call_reason, and last_interaction_recap; account_name is missing entirely, and the provided call_reason is inaccurate.\",\n      \"omission\": \"Missing account_name; inaccurate call_reason\"\n    },\n    \"Business Relevance\": {\n      \"score\": 3,\n      \"reason\": \"The content captures the main technical issues discussed, but the incorrect call reason adds irrelevant information and reduces usefulness.\",\n      \"irrelevant_information\": \"Incorrect call_reason \\\"General Health Check\\\"\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is brief and directly addresses the required fields without unnecessary filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "All bullets are grounded except the health assessment, which is an inferred rating not explicitly stated in the transcript.",
+          "hallucination": "Overall health moderate with active issues to resolve."
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The bullets cover overall health, key concerns, and relationship trajectory as required.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "All information is directly pertinent to executive summary needs with no extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers concise executive bullets without redundancy or filler."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"All bullets are grounded except the health assessment, which is an inferred rating not explicitly stated in the transcript.\",\n      \"hallucination\": \"Overall health moderate with active issues to resolve.\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The bullets cover overall health, key concerns, and relationship trajectory as required.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"All information is directly pertinent to executive summary needs with no extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers concise executive bullets without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "health_and_adoption",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed features and satisfaction cues are directly mentioned in the transcript; the adoption status inference is reasonable and supported by the mixed usage and issues described.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All required fields (adoption_status, features_mentioned, satisfaction_signals) are present and capture the relevant information from the transcript.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The response stays strictly on utilization, feature adoption, and satisfaction signals without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The output is brief and directly addresses each required field without filler or redundancy."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed features and satisfaction cues are directly mentioned in the transcript; the adoption status inference is reasonable and supported by the mixed usage and issues described.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All required fields (adoption_status, features_mentioned, satisfaction_signals) are present and capture the relevant information from the transcript.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The response stays strictly on utilization, feature adoption, and satisfaction signals without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The output is brief and directly addresses each required field without filler or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "issues_escalations",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "The extracted content contains no statements, so there are no inaccuracies or hallucinations.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 1,
+          "reason": "The segment requires ticket details (issue and severity) that are discussed in the transcript, but the extraction provides none.",
+          "omission": "Missing all ticket entries with issue descriptions and severity levels."
+        },
+        "Business Relevance": {
+          "score": 1,
+          "reason": "The empty extraction offers no usable information for the issues_escalations segment.",
+          "irrelevant_information": "No extracted data provided; therefore the output is unusable for the segment."
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response contains no filler or irrelevant content; it is maximally concise."
+        }
+      },
+      "weighted_score": 3.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content contains no statements, so there are no inaccuracies or hallucinations.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 1,\n      \"reason\": \"The segment requires ticket details (issue and severity) that are discussed in the transcript, but the extraction provides none.\",\n      \"omission\": \"Missing all ticket entries with issue descriptions and severity levels.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 1,\n      \"reason\": \"The empty extraction offers no usable information for the issues_escalations segment.\",\n      \"irrelevant_information\": \"No extracted data provided; therefore the output is unusable for the segment.\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response contains no filler or irrelevant content; it is maximally concise.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "expansion_signals",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed use cases (adding device categories, merging duplicate devices, improving Wi\u2011Fi reporting) are directly mentioned in the transcript, and no unsupported claims are present.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The extraction captures several key expansion signals but omits other evident interests such as the custom/analytics report module and the import of unmanaged devices.",
+          "omission": "Missing mention of interest in custom/analytics report module (and related import unmanaged devices) expressed in the transcript."
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content is tightly focused on expansion signals without extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response provides the required information in a brief, well\u2011structured format with no redundancy."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed use cases (adding device categories, merging duplicate devices, improving Wi\u2011Fi reporting) are directly mentioned in the transcript, and no unsupported claims are present.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The extraction captures several key expansion signals but omits other evident interests such as the custom/analytics report module and the import of unmanaged devices.\",\n      \"omission\": \"Missing mention of interest in custom/analytics report module (and related import unmanaged devices) expressed in the transcript.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is tightly focused on expansion signals without extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response provides the required information in a brief, well\u2011structured format with no redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "renewal_risk",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The risk factors listed (device reporting issues, duplicate data confusion) are not presented in the transcript as renewal\u2011risk discussions, so they are unsupported claims.",
+          "hallucination": "Device reporting issues and Duplicate data confusion as renewal risk factors"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The segment should capture renewal\u2011related information; the transcript contains no renewal date or competitive mentions, and no valid risk factors, yet the extraction adds unsupported items.",
+          "omission": "Missing indication that no renewal\u2011risk factors were discussed (should be empty list)"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "Provided risk factors are unrelated to contract timelines, budget cuts, or competitors, making the content largely irrelevant for renewal risk assessment.",
+          "irrelevant_information": "Device reporting issues and duplicate data confusion"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted output is brief and contains only the required fields without extra verbosity."
+        }
+      },
+      "weighted_score": 2.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The risk factors listed (device reporting issues, duplicate data confusion) are not presented in the transcript as renewal\u2011risk discussions, so they are unsupported claims.\",\n      \"hallucination\": \"Device reporting issues and Duplicate data confusion as renewal risk factors\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The segment should capture renewal\u2011related information; the transcript contains no renewal date or competitive mentions, and no valid risk factors, yet the extraction adds unsupported items.\",\n      \"omission\": \"Missing indication that no renewal\u2011risk factors were discussed (should be empty list)\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"Provided risk factors are unrelated to contract timelines, budget cuts, or competitors, making the content largely irrelevant for renewal risk assessment.\",\n      \"irrelevant_information\": \"Device reporting issues and duplicate data confusion\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted output is brief and contains only the required fields without extra verbosity.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_plan",
+      "metrics": {
+        "precision": {
+          "score": 1.0,
+          "reason": "Correct: 0/3 items. I identified seven distinct concrete follow\u2011up actions in the transcript (e.g., Sunny requesting a review, checking with the data team, sending a report, adding a category, removing low\u2011confidence devices, creating an Asana task, and Lior writing to a colleague). The extracted content lists three predicted items. Only the Sunny\u2011owned action aligns with an actual item, but it includes a fabricated deadline, so it is not counted as correct. No timelines are present in the transcript, yielding a perfect timeline score. Owner attribution is largely incorrect, leading to a low score."
+        },
+        "recall": {
+          "score": 1.57,
+          "reason": "Captured: 1/7 items. I identified seven distinct concrete follow\u2011up actions in the transcript (e.g., Sunny requesting a review, checking with the data team, sending a report, adding a category, removing low\u2011confidence devices, creating an Asana task, and Lior writing to a colleague). The extracted content lists three predicted items. Only the Sunny\u2011owned action aligns with an actual item, but it includes a fabricated deadline, so it is not counted as correct. No timelines are present in the transcript, yielding a perfect timeline score. Owner attribution is largely incorrect, leading to a low score."
+        },
+        "timeline_accuracy": {
+          "score": 5,
+          "reason": "The transcript does not contain any explicit dates or deadlines for the action items, so no timeline accuracy can be evaluated."
+        },
+        "owner_attribution": {
+          "score": 2,
+          "reason": "Only one of the three predicted items correctly attributes the owner (Sunny). The other two assign owners (Micha, Lior) that are not supported by explicit statements in the transcript, resulting in penalization."
+        }
+      },
+      "weighted_score": 2.39,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    }
+  ],
+  "overall_score": 3.662857142857143
+}

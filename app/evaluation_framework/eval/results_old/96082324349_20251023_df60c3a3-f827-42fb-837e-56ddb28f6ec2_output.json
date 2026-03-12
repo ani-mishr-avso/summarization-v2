@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:54:25.346050",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "Internal/Implementation",
+    "predicted_sub_type": "",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": false,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation centers on technical integration, image builds, timelines, and resource coordination for an existing product deployment. Participants discuss delivery expectations, internal blockers, and next steps, indicating a post\u2011sale implementation/customer success discussion rather than a sales pitch or purely internal meeting."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: False, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "meeting_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Trigger and project_state are supported by the transcript, but the requested_by field attributes the meeting request to Harris Sussman without any transcript evidence.",
+          "hallucination": "Attributing the meeting request to Harris Sussman"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The segment captures trigger and project_state, but the requester information is either missing or incorrect, leaving the required field incomplete.",
+          "omission": "Correct identification of who requested the sync"
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "The extracted information is largely relevant to why the meeting was called and the project status; only the inaccurate requester slightly reduces relevance.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and directly addresses each required field without unnecessary detail."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Trigger and project_state are supported by the transcript, but the requested_by field attributes the meeting request to Harris Sussman without any transcript evidence.\",\n      \"hallucination\": \"Attributing the meeting request to Harris Sussman\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The segment captures trigger and project_state, but the requester information is either missing or incorrect, leaving the required field incomplete.\",\n      \"omission\": \"Correct identification of who requested the sync\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"The extracted information is largely relevant to why the meeting was called and the project status; only the inaccurate requester slightly reduces relevance.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and directly addresses each required field without unnecessary detail.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "Most statements are directly supported, but the claim that a decision was made to use an Intel\u2011based image goes beyond what was explicitly decided in the transcript.",
+          "hallucination": "Claim of a firm decision to use an Intel\u2011based image for early testing"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The summary captures the main open issues, upcoming meeting, and health risk, but does not clearly note that no concrete resolution was reached.",
+          "omission": "Missing explicit mention that no definitive resolution had been achieved yet"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "All bullets are directly pertinent to executive decision\u2011making about the project's status and next steps.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the required executive points succinctly without redundant or tangential content."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"Most statements are directly supported, but the claim that a decision was made to use an Intel\u2011based image goes beyond what was explicitly decided in the transcript.\",\n      \"hallucination\": \"Claim of a firm decision to use an Intel\u2011based image for early testing\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The summary captures the main open issues, upcoming meeting, and health risk, but does not clearly note that no concrete resolution was reached.\",\n      \"omission\": \"Missing explicit mention that no definitive resolution had been achieved yet\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"All bullets are directly pertinent to executive decision\u2011making about the project's status and next steps.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the required executive points succinctly without redundant or tangential content.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "key_decisions",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Two of the three entries (meeting schedule and parallel ARM development) are supported by the transcript, but the first entry invents a firm decision to use an Intel image that was only suggested, not decided.",
+          "hallucination": "Use an Intel-based image for integration testing while ARM image is developed in parallel."
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The extracted content includes the key decisions that were actually made (schedule meeting, continue ARM development) and does not miss any major decision present in the transcript.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 3,
+          "reason": "The list contains an entry that is not a confirmed decision, adding irrelevant information for the segment\u2019s purpose.",
+          "irrelevant_information": "The first decision about using an Intel-based image is not a confirmed decision in the transcript."
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response presents three decision objects succinctly without filler or redundant wording."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Two of the three entries (meeting schedule and parallel ARM development) are supported by the transcript, but the first entry invents a firm decision to use an Intel image that was only suggested, not decided.\",\n      \"hallucination\": \"Use an Intel-based image for integration testing while ARM image is developed in parallel.\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The extracted content includes the key decisions that were actually made (schedule meeting, continue ARM development) and does not miss any major decision present in the transcript.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 3,\n      \"reason\": \"The list contains an entry that is not a confirmed decision, adding irrelevant information for the segment\u2019s purpose.\",\n      \"irrelevant_information\": \"The first decision about using an Intel-based image is not a confirmed decision in the transcript.\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response presents three decision objects succinctly without filler or redundant wording.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "blockers_risks",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "The issues and impacts are grounded in the transcript, but the claim that escalation is needed is not stated in the conversation.",
+          "hallucination": "Escalation_needed set to true for all items without transcript evidence"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Main blockers are captured, yet other risks such as the postponed meeting and uncertainty over Intel vs ARM image decisions are omitted.",
+          "omission": "Missing blockers related to meeting delays and image\u2011type decision uncertainty"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "All extracted entries directly address progress\u2011blocking issues and timeline risks, with no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response lists concise issue\u2011impact\u2011escalation triples without redundancy or filler."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"The issues and impacts are grounded in the transcript, but the claim that escalation is needed is not stated in the conversation.\",\n      \"hallucination\": \"Escalation_needed set to true for all items without transcript evidence\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Main blockers are captured, yet other risks such as the postponed meeting and uncertainty over Intel vs ARM image decisions are omitted.\",\n      \"omission\": \"Missing blockers related to meeting delays and image\u2011type decision uncertainty\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"All extracted entries directly address progress\u2011blocking issues and timeline risks, with no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response lists concise issue\u2011impact\u2011escalation triples without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "technical_discussion",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed topics, logic configuration, and debugging notes are directly supported by statements in the transcript.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "Captures the main technical points, but omits the explicit root\u2011cause statement that the architecture difference prevents the service from starting.",
+          "omission": "Explicit root\u2011cause identification (architecture difference blocking service start) not reflected in debugging_notes"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "Content stays strictly on technical architecture, configuration, and integration issues without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "Provides the necessary technical information in a brief, non\u2011redundant manner."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed topics, logic configuration, and debugging notes are directly supported by statements in the transcript.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"Captures the main technical points, but omits the explicit root\u2011cause statement that the architecture difference prevents the service from starting.\",\n      \"omission\": \"Explicit root\u2011cause identification (architecture difference blocking service start) not reflected in debugging_notes\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"Content stays strictly on technical architecture, configuration, and integration issues without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"Provides the necessary technical information in a brief, non\u2011redundant manner.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_items",
+      "metrics": {
+        "precision": {
+          "score": 2.6,
+          "reason": "Correct: 2/5 items. Identified six distinct action items in the transcript. The extracted content listed five items. Only Liron's and Harris's items match both action and timeline, giving two correct items. Liron, Roi, and Harris items are captured, yielding three captured items. Timeline and owner scores reflect the partial correctness."
+        },
+        "recall": {
+          "score": 3.0,
+          "reason": "Captured: 3/6 items. Identified six distinct action items in the transcript. The extracted content listed five items. Only Liron's and Harris's items match both action and timeline, giving two correct items. Liron, Roi, and Harris items are captured, yielding three captured items. Timeline and owner scores reflect the partial correctness."
+        },
+        "timeline_accuracy": {
+          "score": 3,
+          "reason": "Four actual items contain timelines (Liron ASAP, Wei Wednesday next week, Roi Tuesday Oct 28, Harris ongoing). Predicted timelines match for Liron and Harris only; Roi's timeline is incorrect and Wei's timeline is too vague, resulting in partial accuracy."
+        },
+        "owner_attribution": {
+          "score": 3,
+          "reason": "Owners are correctly identified for Liron, Harris, and Roi. The prediction includes an owner (Wei) for an item not actually committed and adds Max, who has no corresponding commitment. Thus, only half of the actual owners are correctly attributed."
+        }
+      },
+      "weighted_score": 2.9,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    },
+    {
+      "segment_name": "timeline_dependencies",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed deadlines, dependencies, and status are directly supported by statements in the transcript.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The extracted content includes the only explicit deadline (end\u2011of\u2011year GA), the key external dependencies (Intel and ARM images), and a concise milestone status, matching the required structure.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "Information is strictly about upcoming deadlines, milestones, and dependencies, with no extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief, containing only the necessary fields without redundancy or filler."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed deadlines, dependencies, and status are directly supported by statements in the transcript.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content includes the only explicit deadline (end\u2011of\u2011year GA), the key external dependencies (Intel and ARM images), and a concise milestone status, matching the required structure.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"Information is strictly about upcoming deadlines, milestones, and dependencies, with no extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief, containing only the necessary fields without redundancy or filler.\"\n    }\n  }\n}"
+    }
+  ],
+  "overall_score": 4.0928571428571425
+}

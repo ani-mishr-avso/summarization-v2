@@ -71,5 +71,6 @@ def get_llm(llm_type: str):
         temperature=cfg["temperature"],
         api_key=api_key,
         reasoning_effort=cfg["reasoning_effort"],
-        service_tier=cfg["service_tier"]
+        service_tier=cfg["service_tier"], 
+        max_tokens=cfg["max_tokens"]
     )

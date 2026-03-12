@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:53:40.923360",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "Internal/Implementation",
+    "predicted_sub_type": "",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": false,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation centers on technical implementation of FortiOS features, sharing binaries, configuring virtual machines, and planning next steps. Participants include both internal team members (e.g., Karin, Moshe, Yael) and an external stakeholder (Max) who is receiving guidance. The focus is on post\u2011sale support and ensuring the customer's environment is correctly set up, which matches a Customer Success/Post\u2011Sale call."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: False, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "meeting_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most elements are supported, but the claim that a demo of the ARM64 broker binary was completed is not substantiated in the transcript; they were still attempting to run it.",
+          "hallucination": "Statement that the broker on ARM64 compiled binary demo was completed"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Trigger and requester are captured, and a high\u2011level project state is provided, but several key details (e.g., need to create the ARM64 image, timeline, postponed session, QCOW/kernels, remote lab setup specifics) are omitted.",
+          "omission": "Missing details about the need to create an ARM64 image, timeline for image creation, postponed meeting, and specifics of remote lab and QCOW/kernel requirements"
+        },
+        "BusinessRelevance": {
+          "score": 5,
+          "reason": "The extracted content directly addresses why the meeting was called, the current state, and who requested it, without extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and to the point, containing only the essential information for the segment."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most elements are supported, but the claim that a demo of the ARM64 broker binary was completed is not substantiated in the transcript; they were still attempting to run it.\",\n      \"hallucination\": \"Statement that the broker on ARM64 compiled binary demo was completed\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Trigger and requester are captured, and a high\u2011level project state is provided, but several key details (e.g., need to create the ARM64 image, timeline, postponed session, QCOW/kernels, remote lab setup specifics) are omitted.\",\n      \"omission\": \"Missing details about the need to create an ARM64 image, timeline for image creation, postponed meeting, and specifics of remote lab and QCOW/kernel requirements\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content directly addresses why the meeting was called, the current state, and who requested it, without extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and to the point, containing only the essential information for the segment.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "All statements are grounded except the claim that the broker binary was \"demonstrated\" on the FortiOS VM, which is not explicitly stated in the transcript.",
+          "hallucination": "Broker binary successfully demonstrated on FortiOS VM"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "Captures the main resolutions, open items, and next steps, but lacks an explicit project health signal (e.g., on\u2011track, at\u2011risk).",
+          "omission": "Explicit project health signal"
+        },
+        "BusinessRelevance": {
+          "score": 5,
+          "reason": "All information directly pertains to the executive summary of what was resolved, what remains open, and next actions.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief, focused, and free of redundant or tangential content."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"All statements are grounded except the claim that the broker binary was \\\"demonstrated\\\" on the FortiOS VM, which is not explicitly stated in the transcript.\",\n      \"hallucination\": \"Broker binary successfully demonstrated on FortiOS VM\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"Captures the main resolutions, open items, and next steps, but lacks an explicit project health signal (e.g., on\u2011track, at\u2011risk).\",\n      \"omission\": \"Explicit project health signal\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 5,\n      \"reason\": \"All information directly pertains to the executive summary of what was resolved, what remains open, and next actions.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief, focused, and free of redundant or tangential content.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "key_decisions",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All three decisions, owners, and rationales are directly supported by statements in the transcript.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Key decisions such as providing the QCloud tool image, sending an estimation email, and formally canceling the Wednesday session are present in the transcript but not captured.",
+          "omission": "Missing decisions about providing the QCloud tool image, sending estimation email, and formally canceling the Wednesday session."
+        },
+        "BusinessRelevance": {
+          "score": 4,
+          "reason": "The extracted decisions are relevant and decision\u2011useful, though some relevant decisions are omitted, reducing overall relevance.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response lists decisions succinctly without unnecessary detail or filler."
+        }
+      },
+      "weighted_score": 4.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All three decisions, owners, and rationales are directly supported by statements in the transcript.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Key decisions such as providing the QCloud tool image, sending an estimation email, and formally canceling the Wednesday session are present in the transcript but not captured.\",\n      \"omission\": \"Missing decisions about providing the QCloud tool image, sending estimation email, and formally canceling the Wednesday session.\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 4,\n      \"reason\": \"The extracted decisions are relevant and decision\u2011useful, though some relevant decisions are omitted, reducing overall relevance.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response lists decisions succinctly without unnecessary detail or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "blockers_risks",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "The issues and impacts are supported by the transcript, but the claim that escalation is needed is not mentioned in the conversation.",
+          "hallucination": "Escalation_needed set to true for the missing ARM64 image issue"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All major blockers and timeline risks discussed in the segment are captured.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted items directly address the segment's focus on blockers and risks without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response presents the necessary information in a brief, well\u2011structured format with no filler."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"The issues and impacts are supported by the transcript, but the claim that escalation is needed is not mentioned in the conversation.\",\n      \"hallucination\": \"Escalation_needed set to true for the missing ARM64 image issue\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All major blockers and timeline risks discussed in the segment are captured.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted items directly address the segment's focus on blockers and risks without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response presents the necessary information in a brief, well\u2011structured format with no filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "technical_discussion",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "Most items are directly supported by the transcript, but the logic_configurations mentions \"VN0\u2011VN1\" firewall policies which are not stated; the transcript refers to VN0\u2011X1 policies.",
+          "hallucination": "Mention of VN0\u2011VN1 firewall policies not present in transcript"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Covers many required topics and debugging steps, but lacks detailed integration logic specifics expected for the segment, leaving integration details under\u2011described.",
+          "omission": "Detailed collector integration logic and data flow description"
+        },
+        "BusinessRelevance": {
+          "score": 5,
+          "reason": "All extracted items pertain directly to the technical discussion of architecture, integration, and debugging without irrelevant filler.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 4,
+          "reason": "The response is compact and focused, with only minor verbosity in the topics list; overall information density is high."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"Most items are directly supported by the transcript, but the logic_configurations mentions \\\"VN0\u2011VN1\\\" firewall policies which are not stated; the transcript refers to VN0\u2011X1 policies.\",\n      \"hallucination\": \"Mention of VN0\u2011VN1 firewall policies not present in transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Covers many required topics and debugging steps, but lacks detailed integration logic specifics expected for the segment, leaving integration details under\u2011described.\",\n      \"omission\": \"Detailed collector integration logic and data flow description\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 5,\n      \"reason\": \"All extracted items pertain directly to the technical discussion of architecture, integration, and debugging without irrelevant filler.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 4,\n      \"reason\": \"The response is compact and focused, with only minor verbosity in the topics list; overall information density is high.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_items",
+      "metrics": {
+        "precision": {
+          "score": 1.57,
+          "reason": "Correct: 1/7 items. I identified 9 distinct commitments in the transcript (remote lab access, creation of ARM64 image, provision of RAM/kernel images, provision of QCloud tool image, compilation and sharing of ARM64 broker binary, sending a pre\u2011signed URL, sending an estimation email, testing collector integration after the image is ready, and reviewing integration requirements). The extracted content lists 7 items. Only one predicted item (testing collector integration) matches both the action and owner without any timeline mismatch, giving a correct_items count of 1. Five of the actual items are captured by the predictions despite timeline errors, yielding captured_items = 5. No timelines are present in the transcript, so timeline accuracy receives a score of 5. Owner attribution is mostly correct but penalized for two fabricated commitments, resulting in a score of 4."
+        },
+        "recall": {
+          "score": 3.22,
+          "reason": "Captured: 5/9 items. I identified 9 distinct commitments in the transcript (remote lab access, creation of ARM64 image, provision of RAM/kernel images, provision of QCloud tool image, compilation and sharing of ARM64 broker binary, sending a pre\u2011signed URL, sending an estimation email, testing collector integration after the image is ready, and reviewing integration requirements). The extracted content lists 7 items. Only one predicted item (testing collector integration) matches both the action and owner without any timeline mismatch, giving a correct_items count of 1. Five of the actual items are captured by the predictions despite timeline errors, yielding captured_items = 5. No timelines are present in the transcript, so timeline accuracy receives a score of 5. Owner attribution is mostly correct but penalized for two fabricated commitments, resulting in a score of 4."
+        },
+        "timeline_accuracy": {
+          "score": 5,
+          "reason": "The transcript does not contain any explicit timeline references for the action items, so timeline accuracy cannot be evaluated and receives the default perfect score."
+        },
+        "owner_attribution": {
+          "score": 4,
+          "reason": "Predicted owners are correct for the items that exist (Max, Moshe, Karin, Liron), but two predicted items (download/install broker and review integration) refer to commitments that were not actually made, resulting in fabricated ownership and a slight penalty."
+        }
+      },
+      "weighted_score": 3.45,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    },
+    {
+      "segment_name": "timeline_dependencies",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "The extraction correctly identifies the need for an ARM64 image and its dependency, but the deadline \"by next week\" is not stated in the transcript.",
+          "hallucination": "ARM64 image ready by next week"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "Only the ARM64 image dependency is captured; other milestones such as the planned next session, email with estimation, and other pending actions are omitted.",
+          "omission": "Missing mention of the scheduled next session, email estimation, and other pending steps"
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "The extracted fields are directly relevant to upcoming deadlines, milestones, and dependencies, though the unsupported deadline slightly reduces relevance.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the necessary information without any filler or redundancy."
+        }
+      },
+      "weighted_score": 3.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"The extraction correctly identifies the need for an ARM64 image and its dependency, but the deadline \\\"by next week\\\" is not stated in the transcript.\",\n      \"hallucination\": \"ARM64 image ready by next week\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"Only the ARM64 image dependency is captured; other milestones such as the planned next session, email with estimation, and other pending actions are omitted.\",\n      \"omission\": \"Missing mention of the scheduled next session, email estimation, and other pending steps\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"The extracted fields are directly relevant to upcoming deadlines, milestones, and dependencies, though the unsupported deadline slightly reduces relevance.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the necessary information without any filler or redundancy.\"\n    }\n  }\n}"
+    }
+  ],
+  "overall_score": 4.0285714285714285
+}

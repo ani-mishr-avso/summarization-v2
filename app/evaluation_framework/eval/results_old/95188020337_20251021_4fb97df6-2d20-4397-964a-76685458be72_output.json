@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:59:45.989080",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "CSM/Post-Sale",
+    "predicted_sub_type": "General Health Check",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation centers on hand\u2011over of an existing account to a Customer Success Manager, review of implementation status, integration issues, education and next steps with the customer. Participants are internal CSM, solution architect and account team, and the purpose is post\u2011sale account management rather than new sales or outbound prospecting."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "relationship_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All three fields are directly supported by statements in the transcript; no fabricated or contradictory information.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All required keys (account_name, call_reason, last_interaction_recap) are present and contain information that exists in the transcript.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content stays strictly on account history, tenure context, and call purpose without unrelated details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "Each field conveys the necessary information succinctly with no redundancy or filler."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All three fields are directly supported by statements in the transcript; no fabricated or contradictory information.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All required keys (account_name, call_reason, last_interaction_recap) are present and contain information that exists in the transcript.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content stays strictly on account history, tenure context, and call purpose without unrelated details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"Each field conveys the necessary information succinctly with no redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most statements are grounded, but claims about \"no active support tickets\" and \"risk of churn due to inactivity\" are not mentioned in the transcript, and saying the AD credential issue was fully resolved is not explicitly supported.",
+          "hallucination": "Claim that there are no active support tickets and that there is a risk of churn due to inactivity; also that the Active Directory credential issue was fully resolved."
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The summary provides five concise executive bullets covering account transition, engagement level, technical status, pending work, and next\u2011step opportunity, matching the segment description.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "The bullets are directly relevant to health, concerns, and relationship trajectory; only the unsupported churn risk adds slight noise.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the required executive points without filler or redundant language."
+        }
+      },
+      "weighted_score": 4.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most statements are grounded, but claims about \\\"no active support tickets\\\" and \\\"risk of churn due to inactivity\\\" are not mentioned in the transcript, and saying the AD credential issue was fully resolved is not explicitly supported.\",\n      \"hallucination\": \"Claim that there are no active support tickets and that there is a risk of churn due to inactivity; also that the Active Directory credential issue was fully resolved.\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The summary provides five concise executive bullets covering account transition, engagement level, technical status, pending work, and next\u2011step opportunity, matching the segment description.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"The bullets are directly relevant to health, concerns, and relationship trajectory; only the unsupported churn risk adds slight noise.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the required executive points without filler or redundant language.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "health_and_adoption",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All statements are supported by the transcript; adoption status and satisfaction signals are accurate interpretations, and listed features are mentioned in the conversation.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "Main adoption status, satisfaction signals, and key features are captured, but the feature list omits mentions of network\u2011configuration support and console\u2011management responsibilities discussed in the transcript.",
+          "omission": "Missing features: network configuration support, console management responsibilities"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content stays strictly on health and adoption topics without extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and directly addresses each required field without filler or redundancy."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All statements are supported by the transcript; adoption status and satisfaction signals are accurate interpretations, and listed features are mentioned in the conversation.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"Main adoption status, satisfaction signals, and key features are captured, but the feature list omits mentions of network\u2011configuration support and console\u2011management responsibilities discussed in the transcript.\",\n      \"omission\": \"Missing features: network configuration support, console management responsibilities\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content stays strictly on health and adoption topics without extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and directly addresses each required field without filler or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "issues_escalations",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "No claims are made, so there are no inaccuracies relative to the transcript.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The transcript discusses several active issues (e.g., Active Directory integration failure, password expiration, deployment delays) but the extraction provides none of the required ticket/issue entries.",
+          "omission": "Missing issue entries (ticket_id, issue, severity) for the problems described in the call."
+        },
+        "Business Relevance": {
+          "score": 1,
+          "reason": "The extraction supplies no information, rendering it unusable for the issues_escalations segment.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response contains no filler, repetition, or unnecessary content."
+        }
+      },
+      "weighted_score": 3.25,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"No claims are made, so there are no inaccuracies relative to the transcript.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The transcript discusses several active issues (e.g., Active Directory integration failure, password expiration, deployment delays) but the extraction provides none of the required ticket/issue entries.\",\n      \"omission\": \"Missing issue entries (ticket_id, issue, severity) for the problems described in the call.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 1,\n      \"reason\": \"The extraction supplies no information, rendering it unusable for the issues_escalations segment.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response contains no filler, repetition, or unnecessary content.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "expansion_signals",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All fields accurately reflect the transcript, which contains no statements about new use cases, seat growth interest, or budget availability.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The transcript provides no expansion\u2011related information, so the extracted empty list, false flag, and empty string capture all available data.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The output is fully focused on the segment\u2019s purpose and contains no extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is minimal and contains only the required fields without any filler or redundancy."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All fields accurately reflect the transcript, which contains no statements about new use cases, seat growth interest, or budget availability.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The transcript provides no expansion\u2011related information, so the extracted empty list, false flag, and empty string capture all available data.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The output is fully focused on the segment\u2019s purpose and contains no extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is minimal and contains only the required fields without any filler or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "renewal_risk",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "The risk factors listed (low engagement, missed meetings) are supported by the transcript; the churn inference is reasonable but not explicitly stated.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All information required by the segment (renewal date, risk factors, competitive mentions) that exists in the transcript is captured; no relevant data is missing.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content stays strictly on renewal\u2011risk related points and contains no extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and directly addresses the required fields without filler or redundancy."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"The risk factors listed (low engagement, missed meetings) are supported by the transcript; the churn inference is reasonable but not explicitly stated.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All information required by the segment (renewal date, risk factors, competitive mentions) that exists in the transcript is captured; no relevant data is missing.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content stays strictly on renewal\u2011risk related points and contains no extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and directly addresses the required fields without filler or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_plan",
+      "metrics": {
+        "precision": {
+          "score": 2.0,
+          "reason": "Correct: 1/4 items. The transcript contains six concrete follow\u2011up actions (Sunny sending an email, sharing Laura's email, syncing with Philip; David informing the team, scheduling a September call, re\u2011planning for early October). The extracted content lists four items. Only Sunny's email\u2011sharing action aligns with the transcript, giving one correct item. David's status\u2011providing item is captured but not phrased exactly, so it counts as captured but not correct due to missing timeline. No predicted timelines match the transcript, resulting in a low timeline score. Owner attribution is mostly incorrect, yielding a low score."
+        },
+        "recall": {
+          "score": 2.33,
+          "reason": "Captured: 2/6 items. The transcript contains six concrete follow\u2011up actions (Sunny sending an email, sharing Laura's email, syncing with Philip; David informing the team, scheduling a September call, re\u2011planning for early October). The extracted content lists four items. Only Sunny's email\u2011sharing action aligns with the transcript, giving one correct item. David's status\u2011providing item is captured but not phrased exactly, so it counts as captured but not correct due to missing timeline. No predicted timelines match the transcript, resulting in a low timeline score. Owner attribution is mostly incorrect, yielding a low score."
+        },
+        "timeline_accuracy": {
+          "score": 1,
+          "reason": "All predicted deadlines (2026-03-05/07/10) are not mentioned in the transcript; the transcript only contains relative time references (e.g., next week, September, beginning of October) that do not match the fabricated dates."
+        },
+        "owner_attribution": {
+          "score": 2,
+          "reason": "Only Sunny's ownership of sharing Laura's email matches the transcript. The other predicted owners (Laura, David, Rodrigo) are either not assigned to any concrete action in the transcript or are incorrectly attributed."
+        }
+      },
+      "weighted_score": 1.83,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    }
+  ],
+  "overall_score": 4.118571428571428
+}

@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:51:59.076047",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "CSM/Post-Sale",
+    "predicted_sub_type": "General Health Check",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 5,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 5,
+      "reasoning": "The conversation is between a customer (Amit Cohen) and a customer\u2011success/account manager (Sunny) discussing existing product usage, licensing renewal, feature adoption, and technical details of the Armis platform. The focus is on post\u2011sale support, renewal timing, and expanding usage rather than prospecting or internal planning, which matches a CSM/Post\u2011Sale call."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "relationship_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The extracted account name \"Aramis Customer\" and the detailed last interaction recap are not mentioned in the transcript, making them unsupported fabrications.",
+          "hallucination": "account_name \"Aramis Customer\"; last_interaction_recap \"Last call was a month ago during holidays; discussed mapping and integration; now following up on progress and license renewal\""
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The extraction includes the main call reason that is present in the transcript, and there is no required information missing; the account name is not provided in the transcript, so its absence is not penalized.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "The core information (call reason) is relevant, but the fabricated last interaction details add irrelevant content.",
+          "irrelevant_information": "fabricated last interaction recap"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and directly addresses the required fields without unnecessary filler."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The extracted account name \\\"Aramis Customer\\\" and the detailed last interaction recap are not mentioned in the transcript, making them unsupported fabrications.\",\n      \"hallucination\": \"account_name \\\"Aramis Customer\\\"; last_interaction_recap \\\"Last call was a month ago during holidays; discussed mapping and integration; now following up on progress and license renewal\\\"\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The extraction includes the main call reason that is present in the transcript, and there is no required information missing; the account name is not provided in the transcript, so its absence is not penalized.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"The core information (call reason) is relevant, but the fabricated last interaction details add irrelevant content.\",\n      \"irrelevant_information\": \"fabricated last interaction recap\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and directly addresses the required fields without unnecessary filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All statements are directly supported by the transcript; no fabricated or contradictory claims were found.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The summary captures health and key concerns, and hints at trajectory, but omits explicit mention of the upcoming license renewal date and the current positive engagement status.",
+          "omission": "Missing explicit reference to renewal timeline (April) and clear statement of relationship trajectory (e.g., ongoing renewal discussion, collaborative tone)."
+        },
+        "BusinessRelevance": {
+          "score": 5,
+          "reason": "The content is tightly focused on executive\u2011level health, concerns, and future direction, with no extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the essential points in a brief, bullet\u2011style format without redundancy or filler."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All statements are directly supported by the transcript; no fabricated or contradictory claims were found.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The summary captures health and key concerns, and hints at trajectory, but omits explicit mention of the upcoming license renewal date and the current positive engagement status.\",\n      \"omission\": \"Missing explicit reference to renewal timeline (April) and clear statement of relationship trajectory (e.g., ongoing renewal discussion, collaborative tone).\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 5,\n      \"reason\": \"The content is tightly focused on executive\u2011level health, concerns, and future direction, with no extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the essential points in a brief, bullet\u2011style format without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "health_and_adoption",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed features and the mixed satisfaction interpretation are directly supported by statements in the transcript; adoption status is a reasonable inference.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The response captures the main adoption status, most discussed features, and satisfaction signals, but omits a few mentioned capabilities such as automated ticketing (WIPER) and SQL\u2011query functionality.",
+          "omission": "Missing features: automated ticketing (WIPER), SQL\u2011query capability, API integration details"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted content is tightly focused on adoption, feature usage, and satisfaction signals, providing decision\u2011useful information without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The output is brief and contains only the required fields with no redundant or filler information."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed features and the mixed satisfaction interpretation are directly supported by statements in the transcript; adoption status is a reasonable inference.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The response captures the main adoption status, most discussed features, and satisfaction signals, but omits a few mentioned capabilities such as automated ticketing (WIPER) and SQL\u2011query functionality.\",\n      \"omission\": \"Missing features: automated ticketing (WIPER), SQL\u2011query capability, API integration details\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is tightly focused on adoption, feature usage, and satisfaction signals, providing decision\u2011useful information without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The output is brief and contains only the required fields with no redundant or filler information.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "issues_escalations",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "No extracted statements are present, so there is nothing that could be inaccurate or fabricated.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The transcript does not contain any explicit support ticket IDs, issue descriptions, or severity levels, so the empty extraction fully satisfies the required structure.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The empty extraction contains no irrelevant or extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is empty, which is the most concise possible while still meeting the segment requirements."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"No extracted statements are present, so there is nothing that could be inaccurate or fabricated.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The transcript does not contain any explicit support ticket IDs, issue descriptions, or severity levels, so the empty extraction fully satisfies the required structure.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The empty extraction contains no irrelevant or extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is empty, which is the most concise possible while still meeting the segment requirements.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "expansion_signals",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most items are grounded, but \"Sentinel integration\" is not mentioned in the transcript, making it an unsupported claim.",
+          "hallucination": "\"Sentinel integration\" not found in transcript"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "All required fields are present, yet the list of new use cases omits several modules discussed (e.g., Exposure Management, Network Segmentation, Automation/WIPER).",
+          "omission": "Missing use cases such as Exposure Management, Network Segmentation, and Automation (WIPER)"
+        },
+        "Business Relevance": {
+          "score": 3,
+          "reason": "Core information is present, but the inclusion of an unsupported use case adds irrelevant noise.",
+          "irrelevant_information": "\"Sentinel integration\" which is not supported by the transcript"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted content is brief and directly addresses the required fields without unnecessary filler."
+        }
+      },
+      "weighted_score": 3.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most items are grounded, but \\\"Sentinel integration\\\" is not mentioned in the transcript, making it an unsupported claim.\",\n      \"hallucination\": \"\\\"Sentinel integration\\\" not found in transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"All required fields are present, yet the list of new use cases omits several modules discussed (e.g., Exposure Management, Network Segmentation, Automation/WIPER).\",\n      \"omission\": \"Missing use cases such as Exposure Management, Network Segmentation, and Automation (WIPER)\"\n    },\n    \"Business Relevance\": {\n      \"score\": 3,\n      \"reason\": \"Core information is present, but the inclusion of an unsupported use case adds irrelevant noise.\",\n      \"irrelevant_information\": \"\\\"Sentinel integration\\\" which is not supported by the transcript\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is brief and directly addresses the required fields without unnecessary filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "renewal_risk",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The renewal_date adds a specific year (2026) not mentioned in the transcript and several listed risk factors (e.g., \"Limited adoption of core features\", \"Need for clearer support and guidance\") are not directly stated, constituting unsupported claims.",
+          "hallucination": "Year 2026 in renewal_date; risk factors not explicitly mentioned in transcript"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "While a renewal date is provided, it lacks the exact year, and the competitive_mentions field is empty despite multiple competitor tools being discussed in the transcript.",
+          "omission": "Missing competitive_mentions entries (e.g., SentinelOne, CrowdStrike, Netskope, Zscaler)"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "The output contains risk factors not supported by the conversation and omits relevant competitive mentions, reducing its usefulness for renewal risk assessment.",
+          "irrelevant_information": "Risk factors such as \"Limited adoption of core features\" and \"Need for clearer support and guidance\" are not evidenced in the transcript"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted content is brief and to the point, presenting only the required fields without unnecessary filler."
+        }
+      },
+      "weighted_score": 2.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The renewal_date adds a specific year (2026) not mentioned in the transcript and several listed risk factors (e.g., \\\"Limited adoption of core features\\\", \\\"Need for clearer support and guidance\\\") are not directly stated, constituting unsupported claims.\",\n      \"hallucination\": \"Year 2026 in renewal_date; risk factors not explicitly mentioned in transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"While a renewal date is provided, it lacks the exact year, and the competitive_mentions field is empty despite multiple competitor tools being discussed in the transcript.\",\n      \"omission\": \"Missing competitive_mentions entries (e.g., SentinelOne, CrowdStrike, Netskope, Zscaler)\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"The output contains risk factors not supported by the conversation and omits relevant competitive mentions, reducing its usefulness for renewal risk assessment.\",\n      \"irrelevant_information\": \"Risk factors such as \\\"Limited adoption of core features\\\" and \\\"Need for clearer support and guidance\\\" are not evidenced in the transcript\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is brief and to the point, presenting only the required fields without unnecessary filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_plan",
+      "metrics": {
+        "precision": {
+          "score": 1.0,
+          "reason": "Correct: 0/3 items. Identified four concrete action items in the transcript: Sunny sending a use\u2011case summary, Sunny sending additional information, Sunny sending Wiper information, and Sunny creating a user account. The extracted content lists three items, none of which match the transcript content, so correct and captured counts are zero. No dates are mentioned, so timeline score is 5. Owner attribution is largely incorrect, yielding a low score."
+        },
+        "recall": {
+          "score": 1.0,
+          "reason": "Captured: 0/4 items. Identified four concrete action items in the transcript: Sunny sending a use\u2011case summary, Sunny sending additional information, Sunny sending Wiper information, and Sunny creating a user account. The extracted content lists three items, none of which match the transcript content, so correct and captured counts are zero. No dates are mentioned, so timeline score is 5. Owner attribution is largely incorrect, yielding a low score."
+        },
+        "timeline_accuracy": {
+          "score": 5,
+          "reason": "No timelines were present in the transcript for this segment."
+        },
+        "owner_attribution": {
+          "score": 2,
+          "reason": "The transcript only specifies Sunny as the owner for the action items (sending summary, sending additional information, creating a user, and sending Wiper info). The extracted content assigns ownership to Amit for one item and includes actions not mentioned in the transcript, resulting in incorrect owner attribution."
+        }
+      },
+      "weighted_score": 2.25,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    }
+  ],
+  "overall_score": 3.8214285714285716
+}

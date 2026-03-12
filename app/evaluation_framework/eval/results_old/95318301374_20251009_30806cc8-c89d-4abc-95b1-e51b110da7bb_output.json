@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:51:18.279345",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "Internal/Implementation",
+    "predicted_sub_type": "",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 4,
+    "validation_passed": false,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 4,
+      "reasoning": "The conversation focuses on technical migration, authentication changes, licensing, and integration details for existing customers. Participants include vendor technical/account managers and partner representatives discussing implementation steps and customer impact, which aligns with a post\u2011sale/customer\u2011success or implementation support call rather than a new sales pitch or outbound prospecting."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: False, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "meeting_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "The trigger and project_state are supported by the transcript, but the requested_by field is not explicitly stated and is inferred, making it an unsupported claim.",
+          "hallucination": "requested_by field claims Israel Sachartov requested the sync, which is not mentioned in the transcript"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All three required fields (trigger, project_state, requested_by) are present in the extracted content.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The extracted information directly addresses why the meeting was called, the current project state, and who requested it, without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and conveys the necessary information without redundancy or filler."
+        }
+      },
+      "weighted_score": 4.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"The trigger and project_state are supported by the transcript, but the requested_by field is not explicitly stated and is inferred, making it an unsupported claim.\",\n      \"hallucination\": \"requested_by field claims Israel Sachartov requested the sync, which is not mentioned in the transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All three required fields (trigger, project_state, requested_by) are present in the extracted content.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The extracted information directly addresses why the meeting was called, the current project state, and who requested it, without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and conveys the necessary information without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All statements are directly supported by the transcript; no fabricated or contradictory claims.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The bullets capture the resolved decisions, the remaining open dependencies, and a clear health signal as required.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "Every bullet is directly relevant to the executive summary purpose; no extraneous information is included.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the necessary information in four succinct bullets without redundancy or filler."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All statements are directly supported by the transcript; no fabricated or contradictory claims.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The bullets capture the resolved decisions, the remaining open dependencies, and a clear health signal as required.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"Every bullet is directly relevant to the executive summary purpose; no extraneous information is included.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the necessary information in four succinct bullets without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "key_decisions",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most decisions are present, but attribution and scope are inaccurate; the dual\u2011authentication decision is not explicitly made by Niels in the transcript and ownership is mis\u2011attributed.",
+          "hallucination": "Attributing the \"Introduce dual authentication\" decision to Niels and stating it as a formal decision, which is not directly supported by the transcript."
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "Key decisions about dual authentication, transition period, and certificate requirement are captured, but other decisions such as hiding the old version for new customers and the licensing requirement for CCP/Conjure are omitted.",
+          "omission": "Missing decisions to hide the old authentication version for new customers and that CCP/Conjure components require an additional license."
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "All extracted items are directly related to technical/process decisions and contain no irrelevant information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response lists each decision succinctly without filler or redundant details."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most decisions are present, but attribution and scope are inaccurate; the dual\u2011authentication decision is not explicitly made by Niels in the transcript and ownership is mis\u2011attributed.\",\n      \"hallucination\": \"Attributing the \\\"Introduce dual authentication\\\" decision to Niels and stating it as a formal decision, which is not directly supported by the transcript.\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"Key decisions about dual authentication, transition period, and certificate requirement are captured, but other decisions such as hiding the old version for new customers and the licensing requirement for CCP/Conjure are omitted.\",\n      \"omission\": \"Missing decisions to hide the old authentication version for new customers and that CCP/Conjure components require an additional license.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"All extracted items are directly related to technical/process decisions and contain no irrelevant information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response lists each decision succinctly without filler or redundant details.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "blockers_risks",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Most issues are grounded in the transcript, but the claim that escalation is needed for the license issue is not stated, making it an unsupported inference.",
+          "hallucination": "Escalation_needed set to true for the license acquisition issue, which is not mentioned in the transcript"
+        },
+        "Completeness": {
+          "score": 3,
+          "reason": "The extracted list captures several key blockers, but omits other evident risks such as the need for customer communication/operation during migration and potential data\u2011structure changes.",
+          "omission": "Missing blockers like required customer communication and possible data\u2011structure changes impacting migration timeline"
+        },
+        "BusinessRelevance": {
+          "score": 5,
+          "reason": "All listed items directly pertain to blockers and risks affecting progress, with no irrelevant content.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response presents three concise entries without redundancy or filler."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Most issues are grounded in the transcript, but the claim that escalation is needed for the license issue is not stated, making it an unsupported inference.\",\n      \"hallucination\": \"Escalation_needed set to true for the license acquisition issue, which is not mentioned in the transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 3,\n      \"reason\": \"The extracted list captures several key blockers, but omits other evident risks such as the need for customer communication/operation during migration and potential data\u2011structure changes.\",\n      \"omission\": \"Missing blockers like required customer communication and possible data\u2011structure changes impacting migration timeline\"\n    },\n    \"BusinessRelevance\": {\n      \"score\": 5,\n      \"reason\": \"All listed items directly pertain to blockers and risks affecting progress, with no irrelevant content.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response presents three concise entries without redundancy or filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "technical_discussion",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All listed topics and the logic configuration are directly supported by statements in the transcript; no fabricated claims.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "Captures the main architectural and integration points, but omits some detailed integration logic mentioned (e.g., policy ID vs object ID mapping and optional safe parameter).",
+          "omission": "Details about API parameters such as policy ID/object ID mapping and optional safe parameter not reflected in topics_covered."
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "Content stays strictly within technical discussion, providing relevant architecture and integration details without unrelated business chatter.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and to the point, presenting only the essential technical information required."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All listed topics and the logic configuration are directly supported by statements in the transcript; no fabricated claims.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"Captures the main architectural and integration points, but omits some detailed integration logic mentioned (e.g., policy ID vs object ID mapping and optional safe parameter).\",\n      \"omission\": \"Details about API parameters such as policy ID/object ID mapping and optional safe parameter not reflected in topics_covered.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"Content stays strictly within technical discussion, providing relevant architecture and integration details without unrelated business chatter.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and to the point, presenting only the essential technical information required.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_items",
+      "metrics": {
+        "precision": {
+          "score": 1.67,
+          "reason": "Correct: 1/6 items. Identified 8 distinct commitments in the transcript (resource sharing, environment access, hiding old version, recording share, building dual\u2011auth, modification for existing customers, demo, and Brian's review). Compared against the 6 extracted items. Only Brian's review matched both action and timeline, giving 1 correct item. Four actual commitments were captured by the predictions despite timeline or owner mismatches, resulting in 4 captured items. Timeline accuracy was partial (1/2 correct) and owner attribution was mostly correct (4/5 correct)."
+        },
+        "recall": {
+          "score": 3.0,
+          "reason": "Captured: 4/8 items. Identified 8 distinct commitments in the transcript (resource sharing, environment access, hiding old version, recording share, building dual\u2011auth, modification for existing customers, demo, and Brian's review). Compared against the 6 extracted items. Only Brian's review matched both action and timeline, giving 1 correct item. Four actual commitments were captured by the predictions despite timeline or owner mismatches, resulting in 4 captured items. Timeline accuracy was partial (1/2 correct) and owner attribution was mostly correct (4/5 correct)."
+        },
+        "timeline_accuracy": {
+          "score": 3,
+          "reason": "Two actual items had explicit timelines (share resources after the call, Brian's review early next week). The predicted timeline for the resource sharing was incorrect (predicted 'within 1 week' vs actual 'after the call'), while Brian's timeline matched. One out of two timeline references was correct, yielding a partial score."
+        },
+        "owner_attribution": {
+          "score": 4,
+          "reason": "Five predicted items correspond to actual commitments. Four of them correctly assigned the owner (Niels, Liron, Simon, Brian). One item (dual\u2011authentication logic) was assigned to Niels but the transcript attributes it to Liron, resulting in a penalty. No ownership information was missing, so the score reflects the majority correct attributions."
+        }
+      },
+      "weighted_score": 2.92,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    },
+    {
+      "segment_name": "timeline_dependencies",
+      "metrics": {
+        "Faithfulness": {
+          "score": 4,
+          "reason": "External dependencies are directly supported by statements about customer certificate submission and need for additional licenses; milestone status is inferred but reasonable, no contradictory claims.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "All required fields (deadlines, external_dependencies, milestone_status) are present and capture the information available in the transcript; no deadlines were mentioned, so an empty list is appropriate.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "The content stays strictly on upcoming deadlines, milestones, and external dependencies without extraneous details.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and includes only the necessary items, with no redundant or filler information."
+        }
+      },
+      "weighted_score": 4.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 4,\n      \"reason\": \"External dependencies are directly supported by statements about customer certificate submission and need for additional licenses; milestone status is inferred but reasonable, no contradictory claims.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"All required fields (deadlines, external_dependencies, milestone_status) are present and capture the information available in the transcript; no deadlines were mentioned, so an empty list is appropriate.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"The content stays strictly on upcoming deadlines, milestones, and external dependencies without extraneous details.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and includes only the necessary items, with no redundant or filler information.\"\n    }\n  }\n}"
+    }
+  ],
+  "overall_score": 4.274285714285715
+}

@@ -1,0 +1,210 @@
+{
+  "evaluation_metadata": {
+    "timestamp": "2026-03-04T18:46:47.223622",
+    "model_used": "openai/gpt-oss-120b",
+    "temperature": 0.0
+  },
+  "call_type_validation": {
+    "predicted_call_type": "CSM/Post-Sale",
+    "predicted_sub_type": "General Health Check",
+    "llm_predicted_call_type": "CSM/Post-Sale",
+    "llm_predicted_subtype": null,
+    "confidence": 5,
+    "validation_passed": true,
+    "stage1_result": {
+      "predicted_call_type": "CSM/Post-Sale",
+      "confidence": 5,
+      "reasoning": "The transcript is an internal team meeting among customer success managers and leadership discussing renewals, risk dashboards, hiring, training, upcoming events, and internal processes. No external prospects or sales negotiations are present, indicating a post\u2011sale/customer success focus."
+    },
+    "stage2_result": null,
+    "reasoning": "Main type match: True, Subtype match: True"
+  },
+  "schema_validation": {
+    "schema_passed": true,
+    "missing_fields": [],
+    "extra_fields": [],
+    "reasoning": "Schema validation: 0 missing, 0 extra fields"
+  },
+  "segment_evaluations": [
+    {
+      "segment_name": "relationship_context",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The extracted account name \"Armis\" is not presented as a customer account in the transcript, and the call reason \"General health check and operational update\" is not explicitly stated, making these claims unsupported.",
+          "hallucination": "Account name \"Armis\" as a customer; call reason \"General health check and operational update\""
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "All required fields (account_name, call_reason, last_interaction_recap) are provided and the recap captures the main topics discussed in the transcript.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "The content is focused on the purpose of the call and summarizes relevant discussion points, without extraneous information.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and contains only the necessary information for the defined fields."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The extracted account name \\\"Armis\\\" is not presented as a customer account in the transcript, and the call reason \\\"General health check and operational update\\\" is not explicitly stated, making these claims unsupported.\",\n      \"hallucination\": \"Account name \\\"Armis\\\" as a customer; call reason \\\"General health check and operational update\\\"\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"All required fields (account_name, call_reason, last_interaction_recap) are provided and the recap captures the main topics discussed in the transcript.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"The content is focused on the purpose of the call and summarizes relevant discussion points, without extraneous information.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and contains only the necessary information for the defined fields.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "smart_summary",
+      "metrics": {
+        "Faithfulness": {
+          "score": 5,
+          "reason": "All statements are directly supported by specific mentions in the transcript.",
+          "hallucination": "None"
+        },
+        "Completeness": {
+          "score": 5,
+          "reason": "The five bullets capture health metrics, key concerns, and relationship trajectory as required.",
+          "omission": "None"
+        },
+        "Business Relevance": {
+          "score": 5,
+          "reason": "Every bullet is pertinent to an executive overview of health, concerns, and trajectory.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response delivers the needed information in five succinct executive bullets without filler."
+        }
+      },
+      "weighted_score": 5.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 5,\n      \"reason\": \"All statements are directly supported by specific mentions in the transcript.\",\n      \"hallucination\": \"None\"\n    },\n    \"Completeness\": {\n      \"score\": 5,\n      \"reason\": \"The five bullets capture health metrics, key concerns, and relationship trajectory as required.\",\n      \"omission\": \"None\"\n    },\n    \"Business Relevance\": {\n      \"score\": 5,\n      \"reason\": \"Every bullet is pertinent to an executive overview of health, concerns, and trajectory.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response delivers the needed information in five succinct executive bullets without filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "health_and_adoption",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "Features and satisfaction signals are grounded in the transcript, but the adoption_status claim of \"high utilization across key accounts\" is not directly stated and is an unsupported inference.",
+          "hallucination": "High utilization across key accounts with active engagement in Connect events."
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "The response includes the required fields and most of the observable information, but it lacks detailed utilization patterns or concrete adoption evidence present in the transcript.",
+          "omission": "Specific utilization details or concrete examples of feature adoption beyond mentions."
+        },
+        "Business Relevance": {
+          "score": 4,
+          "reason": "All provided information pertains to health and adoption, though the adoption_status statement is overly broad and not fully justified.",
+          "irrelevant_information": "None"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted content is brief and focused, containing only the necessary information for the segment."
+        }
+      },
+      "weighted_score": 4.0,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"Features and satisfaction signals are grounded in the transcript, but the adoption_status claim of \\\"high utilization across key accounts\\\" is not directly stated and is an unsupported inference.\",\n      \"hallucination\": \"High utilization across key accounts with active engagement in Connect events.\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"The response includes the required fields and most of the observable information, but it lacks detailed utilization patterns or concrete adoption evidence present in the transcript.\",\n      \"omission\": \"Specific utilization details or concrete examples of feature adoption beyond mentions.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 4,\n      \"reason\": \"All provided information pertains to health and adoption, though the adoption_status statement is overly broad and not fully justified.\",\n      \"irrelevant_information\": \"None\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is brief and focused, containing only the necessary information for the segment.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "issues_escalations",
+      "metrics": {
+        "Faithfulness": {
+          "score": 1,
+          "reason": "The transcript never provides ticket IDs or the specific issue descriptions given; the entries are fabricated and not grounded in the conversation.",
+          "hallucination": "Ticket IDs TICKET-001, TICKET-002, TICKET-003 and the detailed issue texts (e.g., \"H&M escalated feature request delay\") are not mentioned in the transcript."
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The transcript lists many escalations (e.g., Irish Water, Adani, The Attris, H&M, BMW, etc.) but the extraction captures only three invented items, omitting the majority of relevant tickets.",
+          "omission": "Missing tickets for Irish Water, Adani, The Attris, Boy Telecom, IDEX, BSC, Sarton Canelia, Alcatel, Saint Patrick's, Marion Gelschaft, and others mentioned as escalations."
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "Although the format matches the required structure, the content is largely invented and excludes most real escalations, making it of limited decision\u2011useful value.",
+          "irrelevant_information": "Fabricated ticket entries that do not correspond to any actual issues discussed in the transcript."
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted list is brief and contains only the required fields without any extra wording or redundancy."
+        }
+      },
+      "weighted_score": 2.5,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 1,\n      \"reason\": \"The transcript never provides ticket IDs or the specific issue descriptions given; the entries are fabricated and not grounded in the conversation.\",\n      \"hallucination\": \"Ticket IDs TICKET-001, TICKET-002, TICKET-003 and the detailed issue texts (e.g., \\\"H&M escalated feature request delay\\\") are not mentioned in the transcript.\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The transcript lists many escalations (e.g., Irish Water, Adani, The Attris, H&M, BMW, etc.) but the extraction captures only three invented items, omitting the majority of relevant tickets.\",\n      \"omission\": \"Missing tickets for Irish Water, Adani, The Attris, Boy Telecom, IDEX, BSC, Sarton Canelia, Alcatel, Saint Patrick's, Marion Gelschaft, and others mentioned as escalations.\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"Although the format matches the required structure, the content is largely invented and excludes most real escalations, making it of limited decision\u2011useful value.\",\n      \"irrelevant_information\": \"Fabricated ticket entries that do not correspond to any actual issues discussed in the transcript.\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted list is brief and contains only the required fields without any extra wording or redundancy.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "expansion_signals",
+      "metrics": {
+        "Faithfulness": {
+          "score": 3,
+          "reason": "IT expansion for Jaguar Land Rover is supported, but \"Viper Pro deployment in new sites\" and \"Vulnerability Management for new accounts\" are not explicitly mentioned in the transcript.",
+          "hallucination": "\"Viper Pro deployment in new sites\" and \"Vulnerability Management for new accounts\" are not directly supported by the transcript"
+        },
+        "Completeness": {
+          "score": 4,
+          "reason": "Captures the primary expansion signal (Jaguar Land Rover IT expansion) and budget hint, but includes some inferred items and may miss other explicit upsell mentions.",
+          "omission": "None of the clearly stated expansion signals are omitted, but some inferred items could be unnecessary"
+        },
+        "Business Relevance": {
+          "score": 3,
+          "reason": "Core expansion signal is present, but the list contains items not clearly indicated in the transcript, adding irrelevant noise.",
+          "irrelevant_information": "\"Viper Pro deployment in new sites\" and \"Vulnerability Management for new accounts\" are not clearly evidenced"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The response is brief and directly addresses the required fields without filler."
+        }
+      },
+      "weighted_score": 3.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 3,\n      \"reason\": \"IT expansion for Jaguar Land Rover is supported, but \\\"Viper Pro deployment in new sites\\\" and \\\"Vulnerability Management for new accounts\\\" are not explicitly mentioned in the transcript.\",\n      \"hallucination\": \"\\\"Viper Pro deployment in new sites\\\" and \\\"Vulnerability Management for new accounts\\\" are not directly supported by the transcript\"\n    },\n    \"Completeness\": {\n      \"score\": 4,\n      \"reason\": \"Captures the primary expansion signal (Jaguar Land Rover IT expansion) and budget hint, but includes some inferred items and may miss other explicit upsell mentions.\",\n      \"omission\": \"None of the clearly stated expansion signals are omitted, but some inferred items could be unnecessary\"\n    },\n    \"Business Relevance\": {\n      \"score\": 3,\n      \"reason\": \"Core expansion signal is present, but the list contains items not clearly indicated in the transcript, adding irrelevant noise.\",\n      \"irrelevant_information\": \"\\\"Viper Pro deployment in new sites\\\" and \\\"Vulnerability Management for new accounts\\\" are not clearly evidenced\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The response is brief and directly addresses the required fields without filler.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "renewal_risk",
+      "metrics": {
+        "Faithfulness": {
+          "score": 2,
+          "reason": "The renewal_date \"2026-12-31\" is not mentioned in the transcript, and the risk factor about BMW deployment is not supported; only the Clarks churn risk is grounded.",
+          "hallucination": "Renewal date \"2026-12-31\" and BMW deployment risk are fabricated"
+        },
+        "Completeness": {
+          "score": 2,
+          "reason": "The segment should have left renewal_date empty (no date in transcript) and avoided adding unsupported risk factors; only one valid risk factor was captured.",
+          "omission": "Correct handling of missing renewal date and exclusion of unsupported risk factors"
+        },
+        "Business Relevance": {
+          "score": 2,
+          "reason": "Includes fabricated renewal date and an unsupported risk factor, which are irrelevant to the actual discussion.",
+          "irrelevant_information": "Fabricated renewal date and BMW deployment risk"
+        },
+        "Conciseness": {
+          "score": 5,
+          "reason": "The extracted content is brief and contains no unnecessary verbosity."
+        }
+      },
+      "weighted_score": 2.75,
+      "llm_response": "{\n  \"metrics\": {\n    \"Faithfulness\": {\n      \"score\": 2,\n      \"reason\": \"The renewal_date \\\"2026-12-31\\\" is not mentioned in the transcript, and the risk factor about BMW deployment is not supported; only the Clarks churn risk is grounded.\",\n      \"hallucination\": \"Renewal date \\\"2026-12-31\\\" and BMW deployment risk are fabricated\"\n    },\n    \"Completeness\": {\n      \"score\": 2,\n      \"reason\": \"The segment should have left renewal_date empty (no date in transcript) and avoided adding unsupported risk factors; only one valid risk factor was captured.\",\n      \"omission\": \"Correct handling of missing renewal date and exclusion of unsupported risk factors\"\n    },\n    \"Business Relevance\": {\n      \"score\": 2,\n      \"reason\": \"Includes fabricated renewal date and an unsupported risk factor, which are irrelevant to the actual discussion.\",\n      \"irrelevant_information\": \"Fabricated renewal date and BMW deployment risk\"\n    },\n    \"Conciseness\": {\n      \"score\": 5,\n      \"reason\": \"The extracted content is brief and contains no unnecessary verbosity.\"\n    }\n  }\n}"
+    },
+    {
+      "segment_name": "action_plan",
+      "metrics": {
+        "precision": {
+          "score": 1,
+          "reason": "Correct: 0/0 items. No analysis provided"
+        },
+        "recall": {
+          "score": 1,
+          "reason": "Captured: 0/0 items. No analysis provided"
+        },
+        "timeline_accuracy": {
+          "score": 3.0,
+          "reason": "Parsed from text response"
+        },
+        "owner_attribution": {
+          "score": 3.0,
+          "reason": "Parsed from text response"
+        }
+      },
+      "weighted_score": 2.0,
+      "llm_response": "Action item evaluation with mathematical precision/recall calculation"
+    }
+  ],
+  "overall_score": 3.392857142857143
+}

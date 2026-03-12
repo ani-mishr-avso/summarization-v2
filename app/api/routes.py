@@ -32,23 +32,6 @@ def parse_user_map(user_map):
     return speaker_labels, domains
 
 
-def parse_metadata(metadata):
-    user_map = metadata["user_map"]
-    speaker_labels, domains = parse_user_map(user_map)
-    # formatted_transcript = format_transcript(data["transcript"], speaker_labels)
-    # duration_mins = get_duration_mins(data["transcript"])
-    meeting_title = metadata["topic"]
-
-    metadata = {
-        "meeting_title": meeting_title,
-        "duration_mins": duration_mins,
-        "participant_domains": domains,
-        "internal_domains": data["metadata"].get("internal_domains", []),
-    }
-
-    return formatted_transcript, metadata
-
-
 @router.get("/health")
 async def health():
     """Health check for load balancers and readiness probes."""

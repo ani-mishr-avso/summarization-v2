@@ -1,4 +1,3 @@
-import logging
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, TemplateNotFound, select_autoescape
@@ -6,12 +5,6 @@ from jinja2 import Environment, FileSystemLoader, TemplateNotFound, select_autoe
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(handler)
 
 
 BASE_DIR = Path(__file__).resolve().parent

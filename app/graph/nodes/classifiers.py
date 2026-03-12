@@ -8,12 +8,6 @@ from app.utils.llm_response import invoke_and_decode_json
 from app.utils.logger import get_logger
 
 logger = get_logger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(handler)
 
 
 def _classify(
@@ -50,7 +44,7 @@ def level_1_classifier(state: CallState):
         return {
             "call_type": state["call_type"],
             "confidence_level": "HIGH",
-            "reasoning": "As provided by user",
+            "call_type_reasoning": "As provided by user",
         }
 
     logger.info("Level 1 classifier: Calling _classify")
@@ -60,10 +54,11 @@ def level_1_classifier(state: CallState):
         result_mapper=lambda r: {
             "call_type": r["call_type"],
             "confidence_level": r["confidence_level"],
-            "reasoning": r["reasoning"],
+            "call_type_reasoning": r["call_type_reasoning"],
+            "participant_roles": r["participant_roles"],
         },
-        log_fmt="Level 1 classifier: call_type=%s confidence_level=%s reasoning=%s",
-        log_keys=["call_type", "confidence_level", "reasoning"],
+        log_fmt="Level 1 classifier: call_type=%s confidence_level=%s call_type_reasoning=%s",
+        log_keys=["call_type", "confidence_level", "call_type_reasoning"],
     )
     logger.info("Level 1 classifier: %s", out)
     return out
@@ -90,10 +85,13 @@ def level_2_ae_classifier(state: CallState):
             "transcript": state["transcript"],
             "crm_stage": state["metadata"].get("crm_opportunity_stage"),
         },
-        result_mapper=lambda r: {"ae_stage": r["ae_stage"]},
-        log_fmt="Level 2 AE classifier: ae_stage=%s",
-        log_keys=["ae_stage"],
+        result_mapper=lambda r: {
+            "ae_stage": r["ae_stage"],
+            "ae_stage_reasoning": r["ae_stage_reasoning"],
+            "confidence_level": r["confidence_level"],
+        },
+        log_fmt="Level 2 AE classifier: ae_stage=%s ae_stage_reasoning=%s confidence_level=%s",
+        log_keys=["ae_stage", "ae_stage_reasoning", "confidence_level"],
     )
     logger.info("Level 2 AE classifier: %s", out)
     return out
-

@@ -10,12 +10,6 @@ from app.utils.stage import normalize_ae_stage
 
 
 logger = get_logger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(handler)
 
 
 async def ae_expert_agent(state: CallState):

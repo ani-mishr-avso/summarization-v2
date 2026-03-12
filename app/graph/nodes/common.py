@@ -9,12 +9,6 @@ from app.utils.llm_response import invoke_and_decode_json
 
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(handler)
 
 
 def run_simple_expert(

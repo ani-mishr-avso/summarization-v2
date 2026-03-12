@@ -6,12 +6,6 @@ from app.utils.logger import get_logger
 
 
 logger = get_logger(__name__)
-logger.setLevel(logging.DEBUG)
-handler = logging.StreamHandler()
-handler.setFormatter(
-    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-)
-logger.addHandler(handler)
 
 
 def internal_expert_agent(state: CallState):

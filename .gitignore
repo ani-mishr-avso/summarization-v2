@@ -1,5 +1,6 @@
 # Environment
 .venv/
+.cursor/
 venv/
 env/
 .env
@@ -29,4 +30,5 @@ eggs/
 # Optional: uncomment to ignore local data
 data/
 *.csv
+notebooks/
 # samples/

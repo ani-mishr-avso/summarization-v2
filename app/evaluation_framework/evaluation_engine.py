@@ -174,7 +174,7 @@ class EvaluationEngine:
             
             # Build prompt for main type classification
             prompt = CALL_TYPE_VALIDATION_PROMPTS["stage1_main_type"].format(
-                transcript_summary=summary
+                transcript_summary=transcript
             )
             
             # Get LLM response

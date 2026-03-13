@@ -1,13 +1,13 @@
 import logging
 import os
+from typing import Any
 
 from fastapi import APIRouter, HTTPException
 
 from app.api.schemas import RecomputeRequest, SummarizeRequest
-from app.common.email_utils import parse_user_map
 from app.graph import app
 from app.transcript_parser.parser import format_transcript, get_duration_mins
-from typing import Any
+from app.utils.email_utils import parse_user_map
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

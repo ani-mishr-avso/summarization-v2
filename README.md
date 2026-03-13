@@ -39,7 +39,6 @@ summarizer-v2/
 │   │   ├── models.py        # Transcript/turn models
 │   │   └── parser.py        # Parse transcript JSON → turns/text
 │   ├── utils/
-│   │   ├── json_to_html.py
 │   │   ├── llm_response.py  # clean_json_response
 │   │   ├── logger/          # Logging setup (configure_logging)
 │   │   └── scoring/         # meddpicc.py

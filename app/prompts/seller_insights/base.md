@@ -10,13 +10,13 @@
 ## Evaluation Criteria
 Focus specifically on how the seller uses these dimensions to validate technical fit and navigate skepticism:
 
-1. **Labeling**: Did the seller name the prospect's technical concerns or "aha" moments?
-2. **Getting to "That's Right"**: Did the seller summarize a complex prospect requirement so well that the prospect responded with "That's right" or an equivalent acknowledgement?
-3. **Calibrated Questions**: Did the seller ask "How" or "What" questions to explore how the demonstrated feature fits into the prospect's specific environment?
-4. **Mirroring**: Did the seller repeat the prospect's technical requirements or objections to encourage them to provide more detail?
-5. **Tactical Empathy**: Did the seller acknowledge the difficulty of the prospect's current manual processes?
-6. **Accusation Audit**: Did the seller proactively name potential technical gaps or implementation hurdles?
-7. **Black Swan Discovery**: Did the seller uncover a hidden technical constraint or internal stakeholder requirement not previously mentioned?
+1. **Labeling**: Did the seller articulate the buyer’s emotions or unspoken feelings using “It seems like…” or “It sounds like…” or equivalent framing?
+2. **Getting to "That's Right"**: Did the seller summarize the buyer’s position so accurately that the buyer confirms with “That’s right” or equivalent acknowledgement?
+3. **Calibrated Questions**: Did the seller ask open-ended “How” and “What” questions that steer toward the desired outcome?
+4. **Mirroring**: Did the seller repeat the last 1–3 critical words to encourage the buyer to elaborate and reveal deeper information?
+5. **Tactical Empathy**: Did the seller demonstrate genuine understanding of the buyer’s perspective, emotions, and constraints?
+6. **Accusation Audit**: Did the seller preemptively address potential negatives or objections before the buyer raises them?
+7. **Black Swan Discovery**: Did the seller uncover unknown unknowns such as hidden constraints, internal politics, or emotional drivers?
 
 ## Scoring Scale
 - **Effective**: Skillful application that led to deeper insight or prospect alignment.

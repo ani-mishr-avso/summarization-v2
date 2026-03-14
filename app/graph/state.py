@@ -18,7 +18,6 @@ class CallState(TypedDict):
 
     # Output Layers
     final_summary: Dict[str, Any]
-    voss_analysis: Optional[Dict[str, Any]] | None
-    methodology_analysis: Optional[Dict[str, Any]] | None
+    seller_insights: Optional[Dict[str, Any]] | None
+    sales_methodology_analysis: Optional[Dict[str, Any]] | None
     participant_roles: list[Dict[str, Any]]
-    expert_insights: Optional[Dict[str, Any]]

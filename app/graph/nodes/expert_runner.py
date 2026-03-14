@@ -19,7 +19,7 @@ def run_simple_expert(
 ) -> CallState:
     """
     Load prompt, invoke LLM, decode JSON, and set state for a single-summary expert.
-    Mutates state["final_summary"], state["voss_analysis"], state["methodology_analysis"] and returns state.
+    Mutates state["final_summary"], state["seller_insights"], state["sales_methodology_analysis"] and returns state.
     """
     prompt_name = template_name or filename
     logger.info(
@@ -31,6 +31,6 @@ def run_simple_expert(
     prompt = load_prompt(category, prompt_name, transcript=state["transcript"])
     llm = get_llm("technical_llm")
     state["final_summary"] = invoke_and_decode_json(lambda: llm.invoke(prompt))
-    state["voss_analysis"] = None
-    state["methodology_analysis"] = None
+    state["seller_insights"] = None
+    state["sales_methodology_analysis"] = None
     return state

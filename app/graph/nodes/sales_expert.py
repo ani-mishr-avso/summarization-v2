@@ -61,7 +61,7 @@ async def ae_expert_agent(state: CallState):
     results = await asyncio.gather(*tasks)
     logger.info("Tasks completed")
 
-    state["final_summary"] = results[0]
+    state["summary"] = results[0]
     state["seller_insights"] = results[1]
     state["sales_methodology_analysis"] = results[2]
     return state

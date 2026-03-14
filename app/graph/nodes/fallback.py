@@ -29,13 +29,15 @@ def fallback_expert(state: CallState):
     llm = get_llm("technical_llm")
     response = llm.invoke(prompt)
 
+    attendees = state["metadata"].get("attendees", [])
+    participant_roles = [
+        {"name": name, "role": "Participant"} for name in attendees
+    ]
     return {
-        "final_summary": response.content,
-        "voss_analysis": None,
-        "methodology_analysis": None,
-        "participant_roles": {
-            name: "Participant" for name in state["metadata"].get("attendees", [])
-        },
+        "summary": response.content,
+        "seller_insights": None,
+        "sales_methodology_analysis": None,
+        "participant_roles": participant_roles,
         "expert_insights": {
             "type": expert_type_label,
             "show_prompt": True,

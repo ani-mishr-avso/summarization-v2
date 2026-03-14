@@ -13,50 +13,47 @@ You are a specialized AI agent tasked with converting sales call transcripts int
 - **pain_discovery**: Specific problems described, their severity, and current workarounds. 
 - **qualification_signals**: Indicators for Budget, Authority, Need, and Timeline (BANT). 
 - **competitive_landscape**: Mention of incumbent tools or alternatives being evaluated. 
-- **next_steps**: Concrete per-person action items with owners and deadlines. 
+- **action_items**: Concrete per-person action items with owners and deadlines. 
 - **closing_remarks**: Final sentiment, relationship tone, and willingness to continue. 
 
 ## JSON Schema
 {
-  "call_type": "AE/Sales",
-  "sub_type": "Discovery/Qualification",
-  "output": {
-    "meeting_context": {
-      "attendees": [],
-      "referral_source": "",
-      "initial_rapport": ""
-    },
-    "smart_summary": [],
-    "pain_discovery": {
-      "current_state": "",
-      "pain_points": [],
-      "business_impact": "",
-      "workarounds": ""
-    },
-    "qualification_signals": {
-      "budget": "",
-      "authority": "",
-      "need": "",
+  "meeting_context": {
+    "attendees": [],
+    "referral_source": "",
+    "initial_rapport": ""
+  },
+  "smart_summary": [],
+  "pain_discovery": {
+    "current_state": "",
+    "pain_points": [],
+    "business_impact": "",
+    "workarounds": ""
+  },
+  "qualification_signals": {
+    "budget": "",
+    "authority": "",
+    "need": "",
+    "timeline": ""
+  },
+  "competitive_landscape": {
+    "incumbents": [],
+    "alternatives_evaluated": [],
+    "satisfaction_level": ""
+  },
+  "action_items": [
+    {
+      "action": ""
+      "owner": "",
       "timeline": ""
-    },
-    "competitive_landscape": {
-      "incumbents": [],
-      "alternatives_evaluated": [],
-      "satisfaction_level": ""
-    },
-    "next_steps": [
-      {
-        "owner": "",
-        "action": "",
-        "deadline": ""
-      }
-    ],
-    "closing_remarks": {
-      "sentiment": "",
-      "willingness_to_continue": ""
     }
+  ],
+  "closing_remarks": {
+    "sentiment": "",
+    "willingness_to_continue": ""
   }
 }
+
 
 ## Transcript
 {{ transcript }}

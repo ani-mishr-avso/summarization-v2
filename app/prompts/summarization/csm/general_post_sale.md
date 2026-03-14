@@ -22,49 +22,44 @@ Assign roles based on the following context:
 - **issues_escalations**: Active support tickets, bugs, and customer frustration levels.
 - **expansion_upsell_signals**: Interest in new modules, seats, or use cases.
 - **renewal_churn_signals**: Discussions on contract timelines, budget cuts, or competitive alternatives.
-- **action_plan**: Concrete follow-up actions with owners from both vendor and customer side.
+- **action_items**: Concrete follow-up actions with owners from both vendor and customer side.
 
 ## JSON Schema
 {
-  "call_type": "CSM/Post-Sale",
-  "sub_type": "General Health Check",
-  "output": {
-    "relationship_context": {
-      "account_name": "",
-      "call_reason": "",
-      "last_interaction_recap": ""
-    },
-    "smart_summary": [],
-    "health_and_adoption": {
-      "adoption_status": "",
-      "features_mentioned": [],
-      "satisfaction_signals": ""
-    },
-    "issues_escalations": [
-      {
-        "ticket_id": "",
-        "issue": "",
-        "severity": ""
-      }
-    ],
-    "expansion_signals": {
-      "new_use_cases": [],
-      "seat_growth_interest": false,
-      "budget_availability": ""
-    },
-    "renewal_risk": {
-      "renewal_date": "",
-      "risk_factors": [],
-      "competitive_mentions": []
-    },
-    "action_plan": [
-      {
-        "owner": "",
-        "action": "",
-        "deadline": ""
-      }
-    ]
-  }
+  "relationship_context": {
+    "account_name": "",
+    "call_reason": "",
+    "last_interaction_recap": ""
+  },
+  "smart_summary": [],
+  "health_and_adoption": {
+    "adoption_status": "",
+    "features_mentioned": [],
+    "satisfaction_signals": ""
+  },
+  "issues_escalations": [
+    {
+      "issue": "",
+      "severity": "HIGH" | "MEDIUM" | "LOW"
+    }
+  ],
+  "expansion_signals": {
+    "new_use_cases": [],
+    "seat_growth_interest": false,
+    "budget_availability": ""
+  },
+  "renewal_risk": {
+    "renewal_date": "",
+    "risk_factors": [],
+    "competitive_mentions": []
+  },
+  "action_items": [
+    {
+      "action": "",
+      "owner": "",
+      "timeline": ""
+    }
+  ]
 }
 
 ## Transcript

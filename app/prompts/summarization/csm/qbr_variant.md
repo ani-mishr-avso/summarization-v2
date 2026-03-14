@@ -6,13 +6,13 @@ You are a Senior Success Director. Analyze this Quarterly Business Review (QBR) 
 - Do NOT include markdown code blocks or preamble.
 - If data is missing, return null.
 
-## Field Definitions [cite: 181]
+## Field Definitions
 - **performance_review**: Review of KPIs, success metrics, and ROI delivered in the past quarter.
 - **success_metrics**: Forward-looking goals and KPIs agreed upon for the next quarter.
 - **roadmap_feature_discussion**: Product roadmap items relevant to this customer and feedback provided.
 - **renewal_expansion**: Explicit discussion regarding renewal timelines or expansion modules.
 - **risk_items**: Organizational changes, budget freezes, or adoption risks.
-- **joint_action_plan**: Shared milestones and accountability assignments for both parties.
+- **action_items**: Shared milestones and accountability assignments for both parties.
 
 ## JSON Schema
 {
@@ -42,11 +42,11 @@ You are a Senior Success Director. Analyze this Quarterly Business Review (QBR) 
         "mitigation_plan": ""
       }
     ],
-    "joint_action_plan": [
+    "action_items": [
       {
-        "task": "",
-        "responsible_party": "",
-        "due_date": ""
+        "owner": "",
+        "action": "",
+        "timeline": ""
       }
     ]
   }

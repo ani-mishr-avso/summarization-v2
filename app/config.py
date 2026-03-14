@@ -52,6 +52,11 @@ def get_methodology_config() -> dict:
     return get_config()["methodology"]
 
 
+def get_seller_insights_config() -> dict:
+    """Seller insights section (primary_dimensions, secondary_dimensions per stage)."""
+    return get_config()["seller_insights"]
+
+
 def get_llm(llm_type: str):
     """
     Build ChatGroq from config and GROQ_API_KEY env.

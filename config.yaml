@@ -12,7 +12,7 @@ technical_llm:
   temperature: 0.5
   reasoning_effort: "medium"
   service_tier: "auto"
-  max_completion_tokens: 8192
+  max_completion_tokens: 12000
 
 routing:
   fallback_confidence_levels: {"LOW", "MEDIUM"}
@@ -37,6 +37,55 @@ csm:
 
 methodology:
   default_sales_methodology: "MEDDPICC"
+
+seller_insights:
+  discovery:
+    role_title: "Negotiation & Communication Analyst (Voss Framework - Discovery)"
+    role_goal: "You are an expert in the Chris Voss \"Never Split the Difference\" negotiation framework. Your goal is to evaluate the Seller's ability to build rapport, gather intelligence, and uncover hidden constraints during an initial Discovery call."
+    primary_dimensions:
+      - "Calibrated Questions"
+      - "Tactical Empathy"
+      - "Labeling"
+    secondary_dimensions:
+      - "Mirroring"
+      - "Getting to That's Right"
+      - "Black Swan Discovery"
+  demo:
+    role_title: "Negotiation & Communication Analyst (Voss Framework - Demo)"
+    role_goal: "You are an expert in the Chris Voss \"Never Split the Difference\" negotiation framework. Your goal is to evaluate the Seller's communication effectiveness during a product demonstration."
+    primary_dimensions:
+      - "Labeling"
+      - "Getting to That's Right"
+      - "Calibrated Questions"
+    secondary_dimensions:
+      - "Mirroring"
+      - "Tactical Empathy"
+      - "Accusation Audit"
+      - "Black Swan Discovery"
+  negotiation:
+    role_title: "Negotiation Analyst (Voss Framework - Final Negotiation/Close)"
+    role_goal: "You are an expert in the Chris Voss \"Never Split the Difference\" negotiation framework. Your goal is to evaluate the Seller's performance during a final-stage negotiation focused on commercial terms, legal review, and signature commitment."
+    primary_dimensions:
+      - "Black Swan Discovery"
+      - "Accusation Audit"
+      - "Getting to That's Right"
+    secondary_dimensions:
+      - "Calibrated Questions"
+      - "Mirroring"
+      - "Tactical Empathy"
+      - "Labeling"
+  proposal:
+    role_title: "Negotiation & Communication Analyst (Voss Framework - Proposal)"
+    role_goal: "You are an expert in the Chris Voss \"Never Split the Difference\" negotiation framework. Your goal is to evaluate the Seller's ability to drive commercial alignment and handle late-stage friction during a proposal or business case presentation."
+    primary_dimensions:
+      - "Accusation Audit"
+      - "Tactical Empathy"
+      - "Getting to That's Right"
+    secondary_dimensions:
+      - "Calibrated Questions"
+      - "Labeling"
+      - "Mirroring"
+      - "Black Swan Discovery"
 
 fallback:
   prompt_category: "fallback"
